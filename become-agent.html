@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Become a Quantum Equation Agent - Quantum Equation NFTs</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap">
+  <style>
+    /* Reset and Base Styles */
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Poppins', sans-serif; line-height: 1.6; background-color: #1a1a1a; color: #fff; overflow-x: hidden; }
+
+    /* Header */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 2% 4%;
+      background-color: #000;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
+    }
+    .logo img { height: 40px; transition: transform 0.3s ease; }
+    .logo img:hover { transform: scale(1.1); }
+    nav { display: flex; gap: 1.5rem; align-items: center; }
+    .dropdown { position: relative; }
+    .dropdown > a { font-size: 1rem; color: #fff; padding: 0.625rem; transition: color 0.3s ease; }
+    .dropdown:hover > a { color: #00cc00; }
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: #000;
+      min-width: 180px;
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4);
+      border-radius: 8px;
+      z-index: 1;
+      opacity: 0;
+      transform: translateY(10px);
+      transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+    .dropdown:hover .dropdown-content {
+      display: block;
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .dropdown-content a {
+      color: #ddd;
+      padding: 0.75rem 1.25rem;
+      text-decoration: none;
+      display: block;
+      font-size: 0.9rem;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+    .dropdown-content a:hover { background-color: #333; color: #00cc00; }
+    .login-signup {
+      font-size: 1rem;
+      color: #fff;
+      padding: 0.625rem 1.25rem;
+      border-radius: 6px;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+    .login-signup:hover { background-color: #333; transform: scale(1.05); }
+    .connect-wallet {
+      background-color: #00cc00;
+      color: #000;
+      padding: 0.625rem 1.5rem;
+      border-radius: 6px;
+      font-weight: 600;
+      font-size: 1rem;
+      border: none;
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .connect-wallet:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 20px rgba(0, 204, 0, 0.5);
+    }
+
+    /* Agent Page */
+    .agent-page {
+      padding: 5% 4%;
+      text-align: center;
+      background: url('https://i.imgur.com/pCc1Q9T.jpeg') no-repeat center center/cover;
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+    }
+    .agent-page::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      z-index: 1;
+    }
+    .agent-content {
+      position: relative;
+      z-index: 2;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1.25rem;
+      width: 100%;
+    }
+    h1 {
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 700;
+      margin-bottom: 1.25rem;
+      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.7);
+      animation: fadeInDown 1s ease-out;
+    }
+    .intro-text {
+      font-size: clamp(1rem, 2.5vw, 1.3rem);
+      font-weight: 300;
+      color: #eee;
+      margin-bottom: 2.5rem;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+      animation: fadeInUp 1s ease-out 0.3s backwards;
+    }
+
+    /* Agent Details */
+    .agent-details {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.25rem;
+      margin-bottom: 2.5rem;
+    }
+    .detail-card {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      padding: 1.25rem;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+      animation: fadeInUp 1s ease-out calc(0.2s * var(--i)) backwards;
+    }
+    .detail-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0, 204, 0, 0.2);
+    }
+    .detail-card h2 {
+      font-size: clamp(1.2rem, 3vw, 1.6rem);
+      font-weight: 600;
+      margin-bottom: 0.9375rem;
+      color: #fff;
+      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+    }
+    .detail-card p, .detail-card ul {
+      font-size: clamp(0.85rem, 2vw, 0.95rem);
+      font-weight: 300;
+      color: #ddd;
+      text-align: left;
+    }
+    .detail-card ul {
+      list-style: none;
+      padding: 0;
+    }
+    .detail-card ul li {
+      margin-bottom: 0.5rem;
+      position: relative;
+      padding-left: 1.25rem;
+    }
+    .detail-card ul li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 50%;
+      width: 6px;
+      height: 6px;
+      background: #00cc00;
+      border-radius: 50%;
+      transform: translateY(-50%);
+    }
+
+    /* Agent Tiers */
+    .tier-section {
+      margin: 0 auto 2.5rem;
+      max-width: 800px;
+      width: 100%;
+    }
+    .tier-section h2 {
+      font-size: clamp(1.2rem, 3vw, 1.6rem);
+      font-weight: 600;
+      margin-bottom: 1.25rem;
+      color: #fff;
+      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+      text-align: center;
+    }
+    .tier-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.625rem;
+    }
+    .tier-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(255, 255, 255, 0.05);
+      padding: 0.75rem 1.25rem;
+      border-radius: 8px;
+      transition: background 0.3s ease;
+    }
+    .tier-item:hover {
+      background: rgba(255, 255, 255, 0.1);
+    }
+    .tier-name {
+      font-size: clamp(0.85rem, 2vw, 0.95rem);
+      font-weight: 600;
+      color: #fff;
+      flex: 1;
+    }
+    .tier-requirement {
+      font-size: clamp(0.8rem, 1.8vw, 0.9rem);
+      color: #ddd;
+      flex: 2;
+      text-align: center;
+    }
+    .tier-salary {
+      font-size: clamp(0.85rem, 2vw, 0.95rem);
+      font-weight: 600;
+      color: #00cc00;
+      flex: 1;
+      text-align: right;
+    }
+
+    /* Buttons Container */
+    .buttons-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    /* CTA Button (Apply Now) */
+    .cta {
+      display: inline-block;
+      background: linear-gradient(135deg, #00cc00, #00a300);
+      color: #000;
+      padding: 0.9375rem 2.5rem;
+      border-radius: 30px;
+      font-size: clamp(1rem, 2.5vw, 1.25rem);
+      font-weight: 600;
+      text-decoration: none;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      animation: fadeInUp 1s ease-out 0.6s backwards;
+    }
+    .cta:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 25px rgba(0, 204, 0, 0.7);
+    }
+
+    /* Policy Button */
+    .policy-btn {
+      display: inline-block;
+      background: linear-gradient(135deg, #00a300, #007a00); /* Slightly darker green for distinction */
+      color: #fff;
+      padding: 0.9375rem 2.5rem;
+      border-radius: 30px;
+      font-size: clamp(1rem, 2.5vw, 1.25rem);
+      font-weight: 600;
+      text-decoration: none;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: pointer;
+    }
+    .policy-btn:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 25px rgba(0, 204, 0, 0.7);
+    }
+
+    /* Modal (Popup) Styles */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1001;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0, 0, 0, 0.9);
+    }
+    .modal-content {
+      background-color: #1a1a1a;
+      margin: 5% auto;
+      padding: 1.875rem;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 12px;
+      width: 90%;
+      max-width: 900px;
+      max-height: 80vh;
+      overflow-y: auto;
+      position: relative;
+      animation: fadeInUp 0.5s ease-out;
+    }
+    .close {
+      position: absolute;
+      top: 0.9375rem;
+      right: 1.5625rem;
+      color: #fff;
+      font-size: 1.875rem;
+      font-weight: bold;
+      cursor: pointer;
+      transition: color 0.3s ease;
+    }
+    .close:hover,
+    .close:focus {
+      color: #00cc00;
+    }
+    .modal-content h2 {
+      font-size: clamp(1.5rem, 4vw, 2rem);
+      font-weight: 600;
+      margin-bottom: 1.25rem;
+      color: #fff;
+      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+    }
+    .modal-content h3 {
+      font-size: clamp(1.1rem, 3vw, 1.4rem);
+      font-weight: 600;
+      margin: 1.25rem 0 0.625rem;
+      color: #fff;
+    }
+    .modal-content p,
+    .modal-content ul {
+      font-size: clamp(0.85rem, 2vw, 0.95rem);
+      font-weight: 300;
+      color: #ddd;
+      margin-bottom: 0.9375rem;
+    }
+    .modal-content ul {
+      list-style: none;
+      padding-left: 1.25rem;
+    }
+    .modal-content ul li {
+      margin-bottom: 0.625rem;
+      position: relative;
+    }
+    .modal-content ul li::before {
+      content: '';
+      position: absolute;
+      left: -1.25rem;
+      top: 50%;
+      width: 6px;
+      height: 6px;
+      background: #00cc00;
+      border-radius: 50%;
+      transform: translateY(-50%);
+    }
+    .modal-content table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1.25rem 0;
+    }
+    .modal-content table th,
+    .modal-content table td {
+      padding: 0.75rem;
+      text-align: left;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .modal-content table th {
+      background: rgba(255, 255, 255, 0.05);
+      font-weight: 600;
+      color: #fff;
+    }
+    .modal-content table td {
+      color: #ddd;
+    }
+
+    /* Animations */
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Media Queries for Responsiveness */
+    @media (max-width: 768px) {
+      header {
+        flex-direction: column;
+        padding: 1.5rem;
+      }
+      nav {
+        flex-direction: column;
+        gap: 1rem;
+        margin-top: 1rem;
+      }
+      .agent-details {
+        grid-template-columns: 1fr;
+      }
+      .tier-item {
+        flex-direction: column;
+        text-align: center;
+        gap: 0.5rem;
+      }
+      .tier-name, .tier-requirement, .tier-salary {
+        flex: none;
+      }
+    }
+    @media (max-width: 480px) {
+      .logo img { height: 30px; }
+      h1 { font-size: 2rem; }
+      .intro-text { font-size: 1rem; }
+      .cta, .policy-btn { padding: 0.75rem 2rem; font-size: 1rem; }
+      .modal-content { padding: 1rem; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="logo">
+      <img src="https://i.ibb.co/N61T2GkV/logo.png" alt="Quantum Equation Logo" loading="lazy">
+    </div>
+    <nav>
+      <div class="dropdown">
+        <a href="#home">Menu</a>
+        <div class="dropdown-content">
+          <a href="index.html#home">Home</a>
+          <a href="index.html#how-it-works">How It Works</a>
+          <a href="index.html#marketplace">NFT Marketplace</a>
+          <a href="index.html#portfolio">Portfolio</a>
+          <a href="index.html#testimonials">Testimonials</a>
+          <a href="index.html#real-life-investments">Real-Life Investments</a>
+          <a href="become-agent.html">Become an Agent</a>
+          <a href="index.html#referral-bonuses">Referral Bonuses</a>
+          <a href="about.html">About Us</a>
+          <a href="faq.html">FAQ</a>
+          <a href="dashboard.html">Dashboard</a>
+        </div>
+      </div>
+      <a href="login.html" class="login-signup">Login/Signup</a>
+      <button class="connect-wallet">Connect Wallet</button>
+    </nav>
+  </header>
+
+  <!-- Agent Page Content -->
+  <section class="agent-page">
+    <div class="agent-content">
+      <h1>Become a Quantum Equation Agent</h1>
+      <p class="intro-text">Join our elite program and unlock a world of earning potential by promoting Quantum Equation NFTs – a sustainable, blockchain-driven opportunity.</p>
+      <div class="agent-details">
+        <div class="detail-card" style="--i: 1;">
+          <h2>Why Join QET?</h2>
+          <ul>
+            <li>Earn up to 10% commissions on direct NFT sales</li>
+            <li>Receive 1% on every NFT resale</li>
+            <li>Unlock monthly salaries from $50 to $4,000</li>
+            <li>Enjoy transparent, blockchain-tracked payments</li>
+            <li>No Ponzi, no scams – real sales, real rewards</li>
+          </ul>
+        </div>
+        <div class="detail-card" style="--i: 2;">
+          <h2>How You Earn</h2>
+          <p>Agents thrive through a tiered system:</p>
+          <ul>
+            <li><strong>Direct Sales:</strong> 10% commission (5% instant, 5% over 12 months)</li>
+            <li><strong>Resales:</strong> 1% commission on secondary market sales</li>
+            <li><strong>Salaries:</strong> Monthly payouts from $50 to $4,000</li>
+            <li><strong>Payouts:</strong> 70% USDT, 30% QET tokens, paid monthly</li>
+          </ul>
+        </div>
+        <div class="detail-card" style="--i: 3;">
+          <h2>Requirements & Policies</h2>
+          <ul>
+            <li><strong>Ongoing Sales:</strong> 20% of tier level every 3 months</li>
+            <li><strong>Holder Retention:</strong> 75% active holders required</li>
+            <li><strong>Anti-Fraud:</strong> No self-referrals, KYC mandatory</li>
+            <li><strong>Demotion:</strong> Salary reduced if quotas missed</li>
+          </ul>
+        </div>
+      </div>
+      <!-- Agent Tiers -->
+      <div class="tier-section">
+        <h2>Agent Tiers</h2>
+        <div class="tier-list">
+          <div class="tier-item">
+            <span class="tier-name">Starter</span>
+            <span class="tier-requirement">$15,000 in sales</span>
+            <span class="tier-salary">Commissions only</span>
+          </div>
+          <div class="tier-item">
+            <span class="tier-name">Junior</span>
+            <span class="tier-requirement">$50,000 + 5 referrals</span>
+            <span class="tier-salary">$50</span>
+          </div>
+          <div class="tier-item">
+            <span class="tier-name">Associate</span>
+            <span class="tier-requirement">$100,000 + 10 referrals</span>
+            <span class="tier-salary">$100</span>
+          </div>
+          <div class="tier-item">
+            <span class="tier-name">Advanced</span>
+            <span class="tier-requirement">$150,000 + 15 referrals</span>
+            <span class="tier-salary">$250</span>
+          </div>
+          <div class="tier-item">
+            <span class="tier-name">Pro</span>
+            <span class="tier-requirement">$250,000 + 25 referrals</span>
+            <span class="tier-salary">$500</span>
+          </div>
+          <div class="tier-item">
+            <span class="tier-name">Senior</span>
+            <span class="tier-requirement">$500,000 + 50 referrals</span>
+            <span class="tier-salary">$1,500</span>
+          </div>
+          <div class="tier-item">
+            <span class="tier-name">Elite</span>
+            <span class="tier-requirement">$750,000 + 75 referrals</span>
+            <span class="tier-salary">$2,500</span>
+          </div>
+          <div class="tier-item">
+            <span class="tier-name">VIP</span>
+            <span class="tier-requirement">$1M + 100 referrals</span>
+            <span class="tier-salary">$4,000</span>
+          </div>
+        </div>
+      </div>
+      <!-- Buttons Container -->
+      <div class="buttons-container">
+        <button class="policy-btn" onclick="openPolicyModal()">View Agent Policy</button>
+        <a href="login.html" class="cta">Apply Now</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Policy Modal -->
+  <div id="policyModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closePolicyModal()">×</span>
+      <h2>Quantum Equation Technology (QET) Agent Policy</h2>
+      
+      <h3>1. Overview</h3>
+      <p>QET’s Agent Model is designed to incentivize sales representatives while ensuring a sustainable, non-Ponzi structure. Agents earn commissions on NFT sales and resales while also qualifying for monthly salaries based on performance and retention. This model prevents abuse by requiring ongoing sales and maintaining active holders.</p>
+
+      <h3>2. Agent Tiers & Compensation Structure</h3>
+      <p>Agents progress through different tiers based on performance, starting with commission-only earnings before unlocking monthly salaries at higher levels.</p>
+      
+      <h4>2.1 Commission Structure</h4>
+      <ul>
+        <li><strong>Direct NFT Sale Commission:</strong> Agents earn 10% on every NFT sale. This is split into:</li>
+        <ul>
+          <li>5% Instant Payment (paid immediately upon sale)</li>
+          <li>5% Spread Payment (paid monthly over 12 months)</li>
+        </ul>
+        <li><strong>NFT Resale Commission:</strong> Agents earn 1% of resale value whenever a holder resells an NFT on OpenSea or any other secondary market.</li>
+      </ul>
+
+      <h4>2.2 Agent Tiers & Salary Progression</h4>
+      <p>Agents begin at the Starter Tier, earning commissions only. They qualify for salaries after meeting specific milestones.</p>
+      <table>
+        <tr>
+          <th>Agent Tier</th>
+          <th>Requirement</th>
+          <th>Monthly Salary</th>
+        </tr>
+        <tr>
+          <td>Starter Agent</td>
+          <td>Close $15,000 in NFT sales</td>
+          <td>No salary (only commissions)</td>
+        </tr>
+        <tr>
+          <td>Junior Agent</td>
+          <td>Close $50,000 in NFT sales + 5 active referrals</td>
+          <td>$50</td>
+        </tr>
+        <tr>
+          <td>Associate Agent</td>
+          <td>Close $100,000 in NFT sales + 10 active referrals</td>
+          <td>$100</td>
+        </tr>
+        <tr>
+          <td>Advanced Associate Agent</td>
+          <td>Close $150,000 in NFT sales + 15 active referrals</td>
+          <td>$250</td>
+        </tr>
+        <tr>
+          <td>Pro Agent</td>
+          <td>Close $250,000 in NFT sales + 25 active referrals</td>
+          <td>$500</td>
+        </tr>
+        <tr>
+          <td>Senior Agent</td>
+          <td>Close $500,000 in NFT sales + 50 active referrals</td>
+          <td>$1,500</td>
+        </tr>
+        <tr>
+          <td>Elite Agent</td>
+          <td>Close $750,000 in NFT sales + 75 active referrals</td>
+          <td>$2,500</td>
+        </tr>
+        <tr>
+          <td>VIP Agent</td>
+          <td>Close $1,000,000 in NFT sales + 100 active referrals</td>
+          <td>$4,000</td>
+        </tr>
+      </table>
+
+      <h3>3. Qualification & Performance Requirements</h3>
+      <p>To prevent abuse, agents must meet the following requirements to maintain their salary:</p>
+      <h4>3.1 Ongoing Sales Requirement</h4>
+      <ul>
+        <li>Agents must generate new NFT sales at 20% of their tier level every 3 months to continue receiving salaries.</li>
+        <li>If an agent fails to meet their quota, their salary is paused until they reach the quota again.</li>
+      </ul>
+      <h4>3.2 Rolling Active Holder Requirement</h4>
+      <ul>
+        <li>At least 75% of required active holders must remain every 3 months to avoid a salary freeze.</li>
+        <li>If an agent’s holder retention drops below 75%, their salary is reduced or paused.</li>
+      </ul>
+
+      <h3>4. Promotion, Demotion & Salary Reduction Policy</h3>
+      <p>Agents who fail to meet sales or retention requirements will have their salary gradually reduced before being demoted or removed.</p>
+      <table>
+        <tr>
+          <th>Original Tier</th>
+          <th>First Missed Quota (Salary Reduction)</th>
+          <th>Second Missed Quota (Demotion)</th>
+          <th>Third Missed Quota (Disqualification)</th>
+        </tr>
+        <tr>
+          <td>Junior ($50/month)</td>
+          <td>🔻 Salary drops to $25</td>
+          <td>🔻 Demoted to Starter (Commission Only)</td>
+          <td>❌ Removed from the program</td>
+        </tr>
+        <tr>
+          <td>Associate ($100/month)</td>
+          <td>🔻 Salary drops to $50</td>
+          <td>🔻 Demoted to Junior ($50)</td>
+          <td>❌ Removed from the program</td>
+        </tr>
+        <tr>
+          <td>Advanced Associate ($250/month)</td>
+          <td>🔻 Salary drops to $100</td>
+          <td>🔻 Demoted to Associate ($100)</td>
+          <td>❌ Removed from the program</td>
+        </tr>
+        <tr>
+          <td>Pro ($500/month)</td>
+          <td>🔻 Salary drops to $250</td>
+          <td>🔻 Demoted to Advanced Associate ($250)</td>
+          <td>❌ Removed from the program</td>
+        </tr>
+        <tr>
+          <td>Senior ($1,500/month)</td>
+          <td>🔻 Salary drops to $750</td>
+          <td>🔻 Demoted to Pro ($500)</td>
+          <td>❌ Removed from the program</td>
+        </tr>
+        <tr>
+          <td>Elite ($2,500/month)</td>
+          <td>🔻 Salary drops to $1,250</td>
+          <td>🔻 Demoted to Senior ($1,500)</td>
+          <td>❌ Removed from the program</td>
+        </tr>
+        <tr>
+          <td>VIP ($4,000/month)</td>
+          <td>🔻 Salary drops to $2,000</td>
+          <td>🔻 Demoted to Elite ($2,500)</td>
+          <td>❌ Removed from the program</td>
+        </tr>
+      </table>
+
+      <h3>5. Anti-Gaming & Fraud Prevention</h3>
+      <ul>
+        <li><strong>Resale Disqualification:</strong> If an NFT is resold, the original agent does not receive credit for the new holder. Only the first sale counts towards their qualification.</li>
+        <li><strong>No Self-Referrals:</strong> Agents cannot purchase NFTs under their own referral to qualify for salaries.</li>
+        <li><strong>Blacklist Policy:</strong> Agents found exploiting loopholes (e.g., fake accounts, artificial sales) will be permanently banned.</li>
+        <li><strong>KYC Verification:</strong> Every agent must pass a Know Your Customer (KYC) check to qualify.</li>
+      </ul>
+
+      <h3>6. Payment & Payout System</h3>
+      <ul>
+        <li>Commissions and salaries are paid 70% in USDT and 30% in QET tokens.</li>
+        <li>Payouts are processed monthly, with spread commissions released in equal parts over 12 months.</li>
+        <li>If an agent misses two consecutive sales quotas, salary payments are halted until requirements are met again.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- JavaScript for Modal -->
+  <script>
+    function openPolicyModal() {
+      document.getElementById("policyModal").style.display = "block";
+    }
+
+    function closePolicyModal() {
+      document.getElementById("policyModal").style.display = "none";
+    }
+
+    // Close modal when clicking outside of it
+    window.onclick = function(event) {
+      var modal = document.getElementById("policyModal");
+      if (event.target == modal) {
+        modal.style.display = "none";
+      }
+    }
+  </script>
+</body>
+</html>
