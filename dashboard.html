@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Agent Dashboard - Quantum Equation Technology</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #1a1a1a;
+      color: #fff;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* Header (from index.html, adjusted) */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem 4%;
+      background: linear-gradient(90deg, #000, #1a1a1a);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
+    }
+    .logo img { height: 40px; transition: transform 0.3s ease; }
+    .logo img:hover { transform: scale(1.1); }
+    nav { display: flex; gap: 1.5rem; align-items: center; }
+    .dropdown { position: relative; }
+    .dropdown > a {
+      font-size: 1rem;
+      color: #fff;
+      padding: 0.625rem;
+      transition: color 0.3s ease;
+      font-weight: 600;
+    }
+    .dropdown:hover > a { color: #00cc00; }
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: #000;
+      min-width: 180px;
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4);
+      border-radius: 8px;
+      z-index: 1;
+      opacity: 0;
+      transform: translateY(10px);
+      transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+    .dropdown:hover .dropdown-content {
+      display: block;
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .dropdown-content a {
+      color: #ddd;
+      padding: 0.75rem 1.25rem;
+      text-decoration: none;
+      display: block;
+      font-size: 0.9rem;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+    .dropdown-content a:hover { background-color: #333; color: #00cc00; }
+    .dropdown-content a.active {
+      background-color: #00cc00;
+      color: #000;
+      font-weight: 600;
+    }
+    .logout {
+      font-size: 1rem;
+      color: #fff;
+      padding: 0.625rem 1.25rem;
+      border-radius: 6px;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+    .logout:hover { background-color: #333; transform: scale(1.05); }
+    .connect-wallet {
+      background: linear-gradient(135deg, #00cc00, #00a300);
+      color: #000;
+      padding: 0.625rem 1.5rem;
+      border-radius: 6px;
+      font-weight: 600;
+      font-size: 1rem;
+      border: none;
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .connect-wallet:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 20px rgba(0, 204, 0, 0.5);
+    }
+
+    /* Main Content */
+    .main-content {
+      padding: 2rem 4%;
+      min-height: calc(100vh - 80px);
+      background: linear-gradient(180deg, #1a1a1a, #000);
+    }
+    h1 {
+      font-size: clamp(1.75rem, 4vw, 2.5rem);
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 2.5rem;
+      background: linear-gradient(90deg, #00cc00, #00a300);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    h2 {
+      font-size: clamp(1.25rem, 3vw, 1.75rem);
+      font-weight: 600;
+      margin-bottom: 1.25rem;
+      color: #fff;
+      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+    }
+
+    /* Stats Grid */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 2.5rem;
+    }
+    .stat-card {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(10px);
+      padding: 1.5rem;
+      border-radius: 12px;
+      text-align: center;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+    .stat-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0, 204, 0, 0.3);
+    }
+    .stat-card h3 {
+      font-size: clamp(1rem, 2vw, 1.25rem);
+      font-weight: 400;
+      color: #ddd;
+      margin-bottom: 0.75rem;
+    }
+    .stat-card p {
+      font-size: clamp(1.25rem, 3vw, 1.75rem);
+      font-weight: 600;
+      color: #00cc00;
+    }
+
+    /* Tools Section */
+    .tools {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(10px);
+      padding: 1.5rem;
+      border-radius: 12px;
+      margin-bottom: 2.5rem;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+    .tool-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: clamp(0.9rem, 2vw, 1rem);
+      color: #ddd;
+    }
+    .tool-item a {
+      color: #00cc00;
+      font-weight: 600;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+    .tool-item a:hover {
+      color: #fff;
+    }
+    .copy-btn {
+      background: #00cc00;
+      color: #000;
+      padding: 0.25rem 0.75rem;
+      border-radius: 4px;
+      font-size: 0.8rem;
+      border: none;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+    .copy-btn:hover {
+      background: #00a300;
+    }
+
+    /* Sales Tracker Section */
+    .sales-tracker {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(10px);
+      padding: 1.5rem;
+      border-radius: 12px;
+      margin-bottom: 2.5rem;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+    .progress-bar {
+      background: #333;
+      height: 8px;
+      border-radius: 4px;
+      margin-top: 0.5rem;
+      overflow: hidden;
+    }
+    .progress {
+      height: 100%;
+      background: linear-gradient(90deg, #00cc00, #00a300);
+      transition: width 0.5s ease;
+    }
+    .sales-tracker p {
+      font-size: clamp(0.9rem, 2vw, 1rem);
+      color: #ddd;
+      margin-bottom: 0.75rem;
+    }
+
+    /* Training Resources Section */
+    .training-resources {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(10px);
+      padding: 1.5rem;
+      border-radius: 12px;
+      margin-bottom: 2.5rem;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+    .training-resources ul {
+      list-style: none;
+      padding: 0;
+    }
+    .training-resources li {
+      margin-bottom: 0.75rem;
+      font-size: clamp(0.9rem, 2vw, 1rem);
+    }
+    .training-resources a {
+      color: #00cc00;
+      font-weight: 600;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+    .training-resources a:hover {
+      color: #fff;
+    }
+
+    /* Profile Section */
+    .profile {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(10px);
+      padding: 1.5rem;
+      border-radius: 12px;
+      margin-bottom: 2.5rem;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+    .profile p {
+      font-size: clamp(0.9rem, 2vw, 1rem);
+      color: #ddd;
+      margin-bottom: 0.5rem;
+    }
+    .profile p strong {
+      color: #00cc00;
+    }
+
+    /* History Section */
+    .history {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(10px);
+      padding: 1.5rem;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    th, td {
+      padding: 0.75rem;
+      text-align: left;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      font-size: clamp(0.85rem, 2vw, 1rem);
+    }
+    th {
+      color: #00cc00;
+      font-weight: 600;
+    }
+    td {
+      color: #ddd;
+    }
+    tr:hover {
+      background: rgba(255, 255, 255, 0.05);
+    }
+    .status-pending { color: #ffcc00; }
+    .status-completed { color: #00cc00; }
+
+    /* Responsiveness */
+    @media (max-width: 768px) {
+      header {
+        flex-direction: column;
+        padding: 1.5rem;
+      }
+      nav {
+        flex-direction: column;
+        gap: 1rem;
+        margin-top: 1rem;
+      }
+      .main-content {
+        padding: 1.5rem;
+      }
+      .stats-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    @media (max-width: 480px) {
+      .logo img { height: 30px; }
+      .main-content { padding: 1rem; }
+      .stat-card, .tools, .sales-tracker, .training-resources, .profile, .history {
+        padding: 1rem;
+      }
+      th, td { padding: 0.5rem; }
+      .tool-item { flex-direction: column; align-items: flex-start; gap: 0.25rem; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="logo">
+      <img src="https://i.ibb.co/N61T2GkV/logo.png" alt="Quantum Equation Logo" loading="lazy">
+    </div>
+    <nav>
+      <div class="dropdown">
+        <a href="#home">Menu</a>
+        <div class="dropdown-content">
+          <a href="index.html#home">Home</a>
+          <a href="index.html#how-it-works">How It Works</a>
+          <a href="index.html#marketplace">NFT Marketplace</a>
+          <a href="index.html#portfolio">Portfolio</a>
+          <a href="index.html#testimonials">Testimonials</a>
+          <a href="index.html#real-life-investments">Real-Life Investments</a>
+          <a href="become-agent.html">Become an Agent</a>
+          <a href="index.html#referral-bonuses">Referral Bonuses</a>
+          <a href="about.html">About Us</a>
+          <a href="faq.html">FAQ</a>
+          <a href="dashboard.html" class="active">Dashboard</a>
+        </div>
+      </div>
+      <a href="logout.html" class="logout">Logout</a>
+      <button class="connect-wallet">Connect Wallet</button>
+    </nav>
+  </header>
+
+  <!-- Main Content -->
+  <main class="main-content">
+    <h1>Welcome, [Agent Name] - Elite Agent</h1>
+
+    <!-- Stats Grid -->
+    <div class="stats-grid">
+      <div class="stat-card">
+        <h3>Total Sales Closed</h3>
+        <p>$350,000</p>
+      </div>
+      <div class="stat-card">
+        <h3>Active NFT Holders</h3>
+        <p>42</p>
+      </div>
+      <div class="stat-card">
+        <h3>Commissions Earned</h3>
+        <p>$35,000</p>
+      </div>
+      <div class="stat-card">
+        <h3>Monthly Salary</h3>
+        <p>$1,500</p>
+      </div>
+    </div>
+
+    <!-- Tools Section -->
+    <div class="tools">
+      <h2>Agent Tools</h2>
+      <div class="tool-item">
+        <span>Your Referral Link:</span>
+        <a href="#">quantumequation.com/ref/[agent-id]</a>
+        <button class="copy-btn" onclick="copyReferralLink()">Copy</button>
+      </div>
+    </div>
+
+    <!-- Sales Tracker Section -->
+    <div class="sales-tracker">
+      <h2>Sales Tracker</h2>
+      <p>Sales This Quarter: $50,000 / $150,000 (33% to next tier)</p>
+      <div class="progress-bar"><div class="progress" style="width: 33%;"></div></div>
+      <p>Active Referrals: 42 / 75 (56% to next tier)</p>
+      <div class="progress-bar"><div class="progress" style="width: 56%;"></div></div>
+    </div>
+
+    <!-- Training Resources Section -->
+    <div class="training-resources">
+      <h2>Training Resources</h2>
+      <ul>
+        <li><a href="#">How to Promote QET NFTs</a></li>
+        <li><a href="#">Understanding Blockchain Payments</a></li>
+        <li><a href="#">Agent Success Stories</a></li>
+      </ul>
+    </div>
+
+    <!-- Profile Section -->
+    <div class="profile">
+      <h2>Profile</h2>
+      <p><strong>Name:</strong> [Agent Name]</p>
+      <p><strong>Tier:</strong> Elite Agent</p>
+      <p><strong>Agent ID:</strong> [agent-id]</p>
+      <p><strong>Joined:</strong> January 15, 2025</p>
+    </div>
+
+    <!-- History Section -->
+    <div class="history">
+      <h2>Recent Activity</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Action</th>
+            <th>Amount</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>2025-03-01</td>
+            <td>NFT Sale</td>
+            <td>$750</td>
+            <td class="status-completed">Completed</td>
+          </tr>
+          <tr>
+            <td>2025-03-05</td>
+            <td>Commission Payout</td>
+            <td>$37.50</td>
+            <td class="status-completed">Completed</td>
+          </tr>
+          <tr>
+            <td>2025-03-10</td>
+            <td>Resale Commission</td>
+            <td>$7.50</td>
+            <td class="status-pending">Pending</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </main>
+
+  <!-- JavaScript for Copy Functionality -->
+  <script>
+    function copyReferralLink() {
+      const link = "quantumequation.com/ref/[agent-id]";
+      navigator.clipboard.writeText(link).then(() => {
+        alert("Referral link copied to clipboard!");
+      });
+    }
+  </script>
+</body>
+</html>
