@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Logout - Quantum Equation Technology</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #0a0a0a, #1a1a1a);
+      color: #fff;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* Animated Background Particles */
+    .particles {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle, rgba(0, 204, 0, 0.1) 0%, transparent 70%);
+      z-index: -1;
+      animation: pulse 10s infinite ease-in-out;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 0.3; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(1.05); }
+    }
+
+    /* Header */
+    header {
+      position: absolute;
+      top: 0;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 4%;
+      background: linear-gradient(90deg, rgba(0, 0, 0, 0.9), rgba(26, 26, 26, 0.7));
+      backdrop-filter: blur(5px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
+      z-index: 1000;
+    }
+    .logo img { height: 35px; transition: transform 0.3s ease; }
+    .logo img:hover { transform: scale(1.1); }
+    nav { display: flex; gap: 1rem; align-items: center; }
+    .dropdown { position: relative; }
+    .dropdown > a {
+      font-size: 0.9rem;
+      color: #fff;
+      padding: 0.5rem;
+      transition: color 0.3s ease;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .dropdown:hover > a { color: #00ff00; }
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      right: 0; /* Align to the right edge of the parent */
+      background: rgba(0, 0, 0, 0.95);
+      min-width: 180px;
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.5);
+      border-radius: 8px;
+      z-index: 1;
+      opacity: 0;
+      transform: translateY(10px);
+      transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+    .dropdown:hover .dropdown-content {
+      display: block;
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .dropdown-content a {
+      color: #ddd;
+      padding: 0.75rem 1.25rem;
+      text-decoration: none;
+      display: block;
+      font-size: 0.85rem;
+      transition: all 0.3s ease;
+    }
+    .dropdown-content a:hover {
+      background: linear-gradient(90deg, #00ff00, #00cc00);
+      color: #000;
+    }
+
+    /* Logout Container */
+    .logout-container {
+      background: rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(15px);
+      padding: 2.5rem;
+      border-radius: 16px;
+      border: 1px solid rgba(0, 255, 0, 0.2);
+      box-shadow: 0 8px 32px rgba(0, 255, 0, 0.1);
+      text-align: center;
+      max-width: 450px;
+      width: 90%;
+      animation: fadeInUp 0.6s ease-out;
+    }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    h1 {
+      font-size: clamp(1.75rem, 5vw, 3rem);
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+      background: linear-gradient(90deg, #00ff00, #00cc00);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
+    }
+    p {
+      font-size: clamp(0.9rem, 2.5vw, 1.25rem);
+      color: #ccc;
+      margin-bottom: 2rem;
+      font-weight: 300;
+    }
+    .btn {
+      display: inline-block;
+      background: linear-gradient(135deg, #00ff00, #00cc00);
+      color: #000;
+      padding: 0.75rem 2.5rem;
+      border-radius: 50px;
+      font-size: clamp(0.9rem, 2vw, 1.1rem);
+      font-weight: 600;
+      text-decoration: none;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(0, 255, 0, 0.3);
+    }
+    .btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(0, 255, 0, 0.5);
+      background: linear-gradient(135deg, #00cc00, #00ff00);
+    }
+    .countdown {
+      font-size: clamp(0.85rem, 2vw, 1rem);
+      color: #00ff00;
+      margin-top: 1.5rem;
+      font-weight: 400;
+      text-shadow: 0 0 5px rgba(0, 255, 0, 0.2);
+    }
+
+    /* Responsiveness */
+    @media (max-width: 768px) {
+      header {
+        flex-direction: column;
+        padding: 1rem;
+      }
+      nav {
+        flex-direction: column;
+        gap: 0.75rem;
+        margin-top: 1rem;
+      }
+      .dropdown-content {
+        right: auto; /* Reset to default for centered nav */
+        left: 50%;
+        transform: translateX(-50%) translateY(10px); /* Center on mobile */
+      }
+      .dropdown:hover .dropdown-content {
+        transform: translateX(-50%) translateY(0);
+      }
+      .logout-container {
+        padding: 2rem;
+      }
+    }
+    @media (max-width: 480px) {
+      .logo img { height: 30px; }
+      .logout-container { padding: 1.5rem; }
+      .btn { padding: 0.6rem 2rem; }
+      .particles { background: radial-gradient(circle, rgba(0, 204, 0, 0.05) 0%, transparent 70%); }
+    }
+  </style>
+</head>
+<body>
+  <!-- Animated Background -->
+  <div class="particles"></div>
+
+  <!-- Header -->
+  <header>
+    <div class="logo">
+      <img src="https://i.ibb.co/N61T2GkV/logo.png" alt="Quantum Equation Logo" loading="lazy">
+    </div>
+    <nav>
+      <div class="dropdown">
+        <a href="#home">Menu</a>
+        <div class="dropdown-content">
+          <a href="index.html#home">Home</a>
+          <a href="index.html#how-it-works">How It Works</a>
+          <a href="index.html#marketplace">NFT Marketplace</a>
+          <a href="index.html#portfolio">Portfolio</a>
+          <a href="index.html#testimonials">Testimonials</a>
+          <a href="index.html#real-life-investments">Real-Life Investments</a>
+          <a href="become-agent.html">Become an Agent</a>
+          <a href="index.html#referral-bonuses">Referral Bonuses</a>
+          <a href="about.html">About Us</a>
+          <a href="faq.html">FAQ</a>
+          <a href="dashboard.html">Dashboard</a>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Logout Content -->
+  <div class="logout-container">
+    <h1>Goodbye</h1>
+    <p>You’ve been successfully logged out. See you again soon!</p>
+    <a href="index.html" class="btn">Back to Home</a>
+    <div class="countdown">Redirecting in <span id="countdown">5</span> seconds...</div>
+  </div>
+
+  <!-- JavaScript for Countdown and Redirect -->
+  <script>
+    let timeLeft = 5;
+    const countdownElement = document.getElementById('countdown');
+
+    const countdown = setInterval(() => {
+      timeLeft--;
+      countdownElement.textContent = timeLeft;
+      if (timeLeft <= 0) {
+        clearInterval(countdown);
+        window.location.href = 'index.html';
+      }
+    }, 1000);
+  </script>
+</body>
+</html>
