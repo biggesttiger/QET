@@ -1,0 +1,1765 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#00cc00">
+  <meta name="description" content="Quantum Equation Technology - Sell Smart Contracts via NFTs with 3% monthly yield paid 70% USDT, 30% QET.">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <title>Quantum Equation Technology - Smart Contracts via NFTs</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap">
+  <link rel="manifest" href="/manifest.json">
+  <link rel="apple-touch-icon" href="https://i.ibb.co/N61T2GkV/logo.png">
+  <link rel="icon" href="https://i.ibb.co/N61T2GkV/logo.png">
+  <style>
+    /* General Styles */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      line-height: 1.6;
+      background-color: #1a1a1a;
+      color: #fff;
+      overflow-x: hidden;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    button:focus, a:focus {
+      outline: 2px solid #00cc00;
+      outline-offset: 2px;
+    }
+
+    /* Common Pattern Style */
+    .pattern-bg {
+      background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%), url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40"%3E%3Cg fill="none" stroke="%2300cc00" stroke-width="1" opacity="0.1"%3E%3Ccircle cx="20" cy="20" r="18"/%3E%3Cline x1="20" y1="2" x2="20" y2="38"/%3E%3Cline x1="2" y1="20" x2="38" y2="20"/%3E%3Ccircle cx="20" cy="20" r="10"/%3E%3C/g%3E%3C/svg%3E') repeat;
+      background-blend-mode: overlay;
+    }
+
+    /* Header */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 40px;
+      background-color: #000;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+    }
+
+    .logo img {
+      height: 40px;
+    }
+
+    nav {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+    }
+
+    .dropdown {
+      position: relative;
+      display: inline-block;
+    }
+
+    .dropdown > a {
+      font-size: 1rem;
+      color: #fff;
+      padding: 10px 20px;
+      transition: color 0.3s ease;
+      font-weight: 600;
+    }
+
+    .dropdown:hover > a { color: #00cc00; }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      left: 0;
+      background-color: #000;
+      min-width: 160px;
+      box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+      z-index: 1;
+      border-radius: 5px;
+    }
+
+    .dropdown-content a {
+      color: #fff;
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+      transition: background-color 0.3s ease;
+    }
+
+    .dropdown-content a:hover {
+      background-color: #333;
+    }
+
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+
+    .login-signup {
+      font-size: 1rem;
+      color: #fff;
+      padding: 10px 20px;
+      border-radius: 5px;
+      transition: background-color 0.3s ease;
+    }
+
+    .login-signup:hover {
+      background-color: #333;
+    }
+
+    .connect-wallet {
+      background-color: #00cc00;
+      color: #000;
+      padding: 10px 20px;
+      border-radius: 5px;
+      font-weight: 600;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      border: none;
+      cursor: pointer;
+    }
+
+    .connect-wallet:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 15px rgba(0, 204, 0, 0.5);
+    }
+
+    /* Hero Section */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 80px 40px;
+      overflow: hidden;
+      background-color: #1a1a1a;
+    }
+
+    .hero-slide {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      opacity: 0;
+      transition: opacity 0.5s ease-in-out;
+      z-index: 1;
+    }
+
+    .hero-slide.active {
+      opacity: 1;
+      z-index: 2;
+    }
+
+    .hero-slide::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.4);
+      z-index: 3;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 4;
+      max-width: 800px;
+      width: 100%;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hero h1 {
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 700;
+      margin: 0;
+    }
+
+    .hero p {
+      font-size: clamp(1rem, 2vw, 1.125rem);
+      font-weight: 300;
+      margin: 20px 0;
+      color: #ddd;
+    }
+
+    .hero .cta {
+      background-color: #ffd700;
+      color: #000;
+      padding: 15px 30px;
+      border-radius: 5px;
+      font-size: clamp(1rem, 2vw, 1.125rem);
+      font-weight: 600;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      border: none;
+      cursor: pointer;
+    }
+
+    .hero .cta:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
+    }
+
+    /* About Us Section */
+    .about-us {
+      padding: 80px 40px;
+      text-align: center;
+      border-top: 1px solid #00cc00;
+      border-bottom: 1px solid #00cc00;
+    }
+
+    .about-us h2 {
+      font-size: clamp(1.75rem, 4vw, 2.25rem);
+      font-weight: 600;
+      margin-bottom: 40px;
+    }
+
+    .about-us p {
+      font-size: 1.125rem;
+      font-weight: 300;
+      color: #ddd;
+      max-width: 800px;
+      margin: 0 auto 20px;
+    }
+
+    .team {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+      margin-top: 40px;
+    }
+
+    .team-member {
+      background-color: #1a1a1a;
+      padding: 20px;
+      border-radius: 10px;
+      transition: transform 0.3s ease;
+    }
+
+    .team-member:hover {
+      transform: translateY(-5px);
+    }
+
+    .team-member img {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      margin-bottom: 15px;
+    }
+
+    .team-member h3 {
+      font-size: 1.25rem;
+      font-weight: 600;
+    }
+
+    .team-member p {
+      font-size: 1rem;
+      color: #00cc00;
+    }
+
+    /* How It Works Section */
+    .how-it-works {
+      padding: 80px 40px;
+      text-align: center;
+      border-top: 1px solid #00cc00;
+      border-bottom: 1px solid #00cc00;
+    }
+
+    .how-it-works h2 {
+      font-size: clamp(1.75rem, 4vw, 2.25rem);
+      font-weight: 600;
+      margin-bottom: 40px;
+    }
+
+    .steps {
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      gap: 30px;
+    }
+
+    .step {
+      max-width: 250px;
+      transition: transform 0.3s ease;
+    }
+
+    .step:hover {
+      transform: translateY(-5px);
+    }
+
+    .step img {
+      width: 50px;
+      height: 50px;
+    }
+
+    .step h3 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin: 10px 0;
+    }
+
+    .step p {
+      font-size: 1rem;
+      font-weight: 300;
+      color: #ddd;
+    }
+
+    /* NFT Marketplace Section */
+    .marketplace {
+      padding: 80px 40px;
+      background-color: #2a2a2a;
+    }
+
+    .marketplace h2 {
+      font-size: clamp(1.75rem, 4vw, 2.25rem);
+      font-weight: 600;
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .nft-listings {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+    }
+
+    .nft-card {
+      background-color: #1a1a1a;
+      padding: 20px;
+      border-radius: 10px;
+      transition: transform 0.3s ease;
+    }
+
+    .nft-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .nft-card img {
+      width: 100%;
+      border-radius: 10px;
+    }
+
+    .nft-card h3 {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin: 10px 0;
+    }
+
+    .nft-card p {
+      font-size: 1rem;
+      font-weight: 300;
+      color: #ddd;
+    }
+
+    .nft-card .price {
+      color: #00cc00;
+      font-weight: 600;
+    }
+
+    /* Quantum Marketplace Section */
+    .quantum-marketplace {
+      padding: 80px 40px;
+      background-color: #2a2a2a;
+    }
+
+    .quantum-marketplace h2 {
+      font-size: clamp(1.75rem, 4vw, 2.25rem);
+      font-weight: 600;
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .ai-listings {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+    }
+
+    .ai-card {
+      background-color: #1a1a1a;
+      padding: 20px;
+      border-radius: 10px;
+      transition: transform 0.3s ease;
+    }
+
+    .ai-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .ai-card img {
+      width: 100%;
+      border-radius: 10px;
+    }
+
+    .ai-card h3 {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin: 10px 0;
+    }
+
+    .ai-card p {
+      font-size: 1rem;
+      font-weight: 300;
+      color: #ddd;
+    }
+
+    .ai-card .price {
+      color: #00cc00;
+      font-weight: 600;
+    }
+
+    /* Dashboard Preview Section */
+    .dashboard-preview {
+      padding: 80px 40px;
+      background-color: #1a1a1a;
+      text-align: center;
+    }
+
+    .dashboard-preview h2 {
+      font-size: clamp(1.75rem, 4vw, 2.25rem);
+      font-weight: 600;
+      margin-bottom: 40px;
+    }
+
+    .dashboard-preview img {
+      max-width: 100%;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(0, 204, 0, 0.3);
+    }
+
+    .dashboard-preview .cta {
+      background-color: #00cc00;
+      color: #000;
+      padding: 15px 30px;
+      border-radius: 5px;
+      font-size: 1.125rem;
+      font-weight: 600;
+      margin-top: 40px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      border: none;
+      cursor: pointer;
+    }
+
+    .dashboard-preview .cta:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 15px rgba(0, 204, 0, 0.5);
+    }
+
+    /* QET Real World Investments Section */
+    .real-world-investments {
+      padding: 80px 40px;
+      background-color: #1a1a1a;
+      text-align: center;
+    }
+
+    .real-world-investments h2 {
+      font-size: clamp(1.75rem, 4vw, 2.25rem);
+      font-weight: 600;
+      margin-bottom: 20px;
+    }
+
+    .real-world-investments p {
+      font-size: 1.125rem;
+      font-weight: 300;
+      color: #ddd;
+      max-width: 800px;
+      margin: 0 auto 40px;
+    }
+
+    .investment-options {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+    }
+
+    .investment-option {
+      background-color: #2a2a2a;
+      padding: 20px;
+      border-radius: 10px;
+      transition: transform 0.3s ease;
+    }
+
+    .investment-option:hover {
+      transform: translateY(-5px);
+    }
+
+    .investment-option img {
+      width: 100%;
+      border-radius: 10px;
+      margin-bottom: 15px;
+    }
+
+    .investment-option h3 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+
+    .investment-option p {
+      font-size: 1rem;
+      font-weight: 300;
+      color: #ddd;
+    }
+
+    /* Become an Agent Section */
+    .become-agent {
+      padding: 80px 40px;
+      background: url('https://i.imgur.com/pCc1Q9T.jpeg') no-repeat center center/cover;
+      position: relative;
+      text-align: center;
+      color: #fff;
+      min-height: 600px;
+    }
+
+    .become-agent::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.75);
+      z-index: 1;
+    }
+
+    .become-agent h2,
+    .become-agent p,
+    .become-agent .agent-benefits,
+    .become-agent .referral-info,
+    .become-agent .cta {
+      position: relative;
+      z-index: 2;
+    }
+
+    .become-agent h2 {
+      font-size: clamp(2rem, 5vw, 2.5rem);
+      font-weight: 700;
+      margin-bottom: 20px;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    }
+
+    .become-agent p {
+      font-size: clamp(1rem, 2vw, 1.25rem);
+      font-weight: 300;
+      color: #eee;
+      margin-bottom: 40px;
+      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+    }
+
+    .agent-benefits {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 40px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .agent-benefit {
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(12px);
+      padding: 35px;
+      border-radius: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      text-align: center;
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+      perspective: 1000px;
+    }
+
+    .agent-benefit:hover {
+      transform: translateY(-12px) rotateX(8deg) rotateY(8deg);
+      box-shadow: 0 20px 40px rgba(0, 204, 0, 0.4);
+    }
+
+    .agent-icon {
+      width: 70px;
+      height: 70px;
+      margin-bottom: 25px;
+      animation: float 3s ease-in-out infinite;
+      transition: transform 0.4s ease, filter 0.4s ease;
+    }
+
+    .agent-benefit:hover .agent-icon {
+      transform: scale(1.2) rotateZ(15deg);
+      filter: drop-shadow(0 5px 15px rgba(0, 204, 0, 0.6));
+      animation-play-state: paused;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+      100% { transform: translateY(0px); }
+    }
+
+    .agent-benefit h3 {
+      font-size: 1.75rem;
+      font-weight: 600;
+      margin: 0 0 15px;
+      color: #fff;
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+    }
+
+    .agent-benefit p {
+      font-size: 1.1rem;
+      font-weight: 300;
+      color: #ddd;
+    }
+
+    .referral-info {
+      margin-top: 40px;
+      background: rgba(255, 255, 255, 0.1);
+      padding: 20px;
+      border-radius: 10px;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .referral-info h3 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 15px;
+    }
+
+    .referral-info p {
+      font-size: 1rem;
+      font-weight: 300;
+      color: #ddd;
+    }
+
+    .become-agent .cta {
+      background-color: #00cc00;
+      color: #000;
+      padding: 15px 35px;
+      border-radius: 8px;
+      font-size: clamp(1rem, 2vw, 1.25rem);
+      font-weight: 600;
+      margin-top: 50px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      border: none;
+      cursor: pointer;
+    }
+
+    .become-agent .cta:hover {
+      transform: scale(1.08);
+      box-shadow: 0 0 20px rgba(0, 204, 0, 0.6);
+    }
+
+    /* Whitepaper Section */
+    .whitepaper {
+      padding: 80px 40px;
+      text-align: center;
+      border-top: 1px solid #00cc00;
+      border-bottom: 1px solid #00cc00;
+    }
+
+    .whitepaper h2 {
+      font-size: clamp(1.75rem, 4vw, 2.25rem);
+      font-weight: 600;
+      margin-bottom: 20px;
+    }
+
+    .whitepaper p {
+      font-size: 1.125rem;
+      font-weight: 300;
+      color: #ddd;
+      max-width: 800px;
+      margin: 0 auto 40px;
+    }
+
+    .whitepaper .cta {
+      background-color: #00cc00;
+      color: #000;
+      padding: 15px 30px;
+      border-radius: 5px;
+      font-size: 1.125rem;
+      font-weight: 600;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      border: none;
+      cursor: pointer;
+    }
+
+    .whitepaper .cta:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 15px rgba(0, 204, 0, 0.5);
+    }
+
+    /* Testimonials Section */
+    .testimonials {
+      padding: 80px 40px;
+      background-color: #2a2a2a;
+      text-align: center;
+    }
+
+    .testimonials h2 {
+      font-size: clamp(1.75rem, 4vw, 2.25rem);
+      font-weight: 600;
+      margin-bottom: 40px;
+    }
+
+    .testimonial-slider {
+      position: relative;
+      max-width: 800px;
+      margin: 0 auto;
+      overflow: hidden;
+    }
+
+    .testimonial-slide {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      padding: 20px;
+      background-color: #1a1a1a;
+      border-radius: 10px;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.5s ease-in-out, visibility 0s 0.5s;
+    }
+
+    .testimonial-slide.active {
+      opacity: 1;
+      visibility: visible;
+      position: relative;
+      transition: opacity 0.5s ease-in-out;
+    }
+
+    .testimonial-slide img {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      margin-bottom: 20px;
+    }
+
+    .testimonial-slide p {
+      font-size: 1.125rem;
+      font-weight: 300;
+      color: #ddd;
+      margin-bottom: 20px;
+    }
+
+    .testimonial-slide h4 {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin: 0;
+    }
+
+    .testimonial-slide span {
+      font-size: 1rem;
+      color: #00cc00;
+    }
+
+    .slider-controls {
+      margin-top: 20px;
+    }
+
+    .slider-controls button {
+      background-color: #00cc00;
+      color: #000;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 1rem;
+      margin: 0 10px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .slider-controls button:hover,
+    .slider-controls button:focus {
+      transform: scale(1.05);
+      box-shadow: 0 0 15px rgba(0, 204, 0, 0.5);
+      outline: none;
+    }
+
+    /* FAQ Section */
+    .faq {
+      padding: 80px 40px;
+    }
+
+    .faq h2 {
+      font-size: clamp(1.75rem, 4vw, 2.25rem);
+      font-weight: 600;
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .faq-list {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .faq-item {
+      background-color: #2a2a2a;
+      padding: 20px;
+      margin-bottom: 15px;
+      border-radius: 10px;
+      transition: background-color 0.3s ease;
+    }
+
+    .faq-item:hover {
+      background-color: #333;
+    }
+
+    .faq-item h3 {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+
+    .faq-item p {
+      font-size: 1rem;
+      font-weight: 300;
+      color: #ddd;
+    }
+
+    /* Contact Form Section */
+    .contact {
+      padding: 80px 40px;
+      background-color: #2a2a2a;
+      text-align: center;
+    }
+
+    .contact h2 {
+      font-size: clamp(1.75rem, 4vw, 2.25rem);
+      font-weight: 600;
+      margin-bottom: 40px;
+    }
+
+    .contact form {
+      max-width: 600px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .contact input,
+    .contact textarea {
+      padding: 15px;
+      border: 1px solid #444;
+      border-radius: 5px;
+      background-color: #1a1a1a;
+      color: #fff;
+      font-size: 1rem;
+    }
+
+    .contact input:focus,
+    .contact textarea:focus {
+      border-color: #00cc00;
+      outline: none;
+    }
+
+    .contact textarea {
+      min-height: 150px;
+      resize: vertical;
+    }
+
+    .contact button {
+      background-color: #00cc00;
+      color: #000;
+      padding: 15px;
+      border-radius: 5px;
+      font-size: 1.125rem;
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .contact button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 15px rgba(0, 204, 0, 0.5);
+    }
+
+    /* Legal/Disclaimer Section */
+    .legal {
+      padding: 80px 40px;
+      position: relative;
+      overflow: hidden;
+      border-top: 1px solid #00cc00;
+      border-bottom: 1px solid #00cc00;
+      text-align: center;
+      min-height: 400px;
+    }
+
+    .legal-container {
+      max-width: 900px;
+      width: 100%;
+      margin: 0 auto;
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(15px);
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0 0 25px rgba(0, 204, 0, 0.15);
+      animation: fadeIn 1s ease-in;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .legal-icon {
+      width: 60px;
+      height: 60px;
+      transition: transform 0.3s ease, filter 0.3s ease;
+    }
+
+    .legal-icon:hover {
+      transform: scale(1.15) rotate(10deg);
+      filter: drop-shadow(0 0 10px rgba(0, 204, 0, 0.7));
+    }
+
+    .legal h2 {
+      font-size: clamp(2rem, 4vw, 2.5rem);
+      font-weight: 700;
+      margin-bottom: 15px;
+      text-shadow: 0 0 10px rgba(0, 204, 0, 0.5);
+      animation: glow 2s ease-in-out infinite alternate;
+    }
+
+    .legal p {
+      font-size: 1.1rem;
+      font-weight: 300;
+      color: #eee;
+      margin-bottom: 20px;
+      line-height: 1.8;
+      opacity: 0;
+      animation: fadeInText 1.5s ease-in forwards;
+      animation-delay: 0.5s;
+    }
+
+    .legal a#open-modal {
+      display: inline-block;
+      background: linear-gradient(135deg, #00cc00, #00ff00);
+      color: #000;
+      padding: 12px 25px;
+      border-radius: 10px;
+      font-weight: 600;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: pointer;
+    }
+
+    .legal a#open-modal:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 20px rgba(0, 204, 0, 0.8);
+    }
+
+    @keyframes glow {
+      from { text-shadow: 0 0 5px rgba(0, 204, 0, 0.3); }
+      to { text-shadow: 0 0 15px rgba(0, 204, 0, 0.7); }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeInText {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    /* Modal Styles */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.9);
+      z-index: 2000;
+      justify-content: center;
+      align-items: center;
+      overflow-y: auto;
+      animation: fadeInModal 0.4s ease-out;
+    }
+
+    .modal-content {
+      background: #1a1a1a;
+      max-width: 900px;
+      width: 90%;
+      border-radius: 15px;
+      box-shadow: 0 0 40px rgba(0, 204, 0, 0.3), 0 0 20px rgba(255, 215, 0, 0.2);
+      border: 1px solid #00cc00;
+      overflow: hidden;
+      animation: slideInModal 0.5s ease-out;
+    }
+
+    .modal-header {
+      background: linear-gradient(135deg, #00cc00, #ffd700);
+      padding: 20px;
+      text-align: center;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .modal-header h3 {
+      font-size: 2rem;
+      font-weight: 700;
+      color: #000;
+      margin: 0;
+      text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+    }
+
+    .modal-body {
+      padding: 30px;
+      max-height: 70vh;
+      overflow-y: auto;
+      scrollbar-width: thin;
+      scrollbar-color: #00cc00 #2a2a2a;
+    }
+
+    .modal-body::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    .modal-body::-webkit-scrollbar-track {
+      background: #2a2a2a;
+      border-radius: 10px;
+    }
+
+    .modal-body::-webkit-scrollbar-thumb {
+      background: #00cc00;
+      border-radius: 10px;
+    }
+
+    .modal-body::-webkit-scrollbar-thumb:hover {
+      background: #00ff00;
+    }
+
+    .modal-body p {
+      font-size: 1rem;
+      font-weight: 300;
+      color: #ddd;
+      margin-bottom: 20px;
+      line-height: 1.8;
+    }
+
+    .modal-body strong {
+      font-weight: 600;
+      color: #fff;
+    }
+
+    .modal-content .close-btn {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      font-size: 1.5rem;
+      color: #000;
+      background: #ffd700;
+      border: none;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      line-height: 40px;
+      text-align: center;
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+    }
+
+    .modal-content .close-btn:hover {
+      transform: scale(1.1) rotate(90deg);
+      box-shadow: 0 0 20px rgba(255, 215, 0, 0.8);
+    }
+
+    @keyframes fadeInModal {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes slideInModal {
+      from { transform: translateY(-50px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    @keyframes slideOutModal {
+      from { transform: translateY(0); opacity: 1; }
+      to { transform: translateY(-50px); opacity: 0; }
+    }
+
+    /* Footer */
+    footer {
+      padding: 40px 40px;
+      background-color: #000;
+      color: #ddd;
+    }
+
+    .footer-content {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 40px;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    .footer-logo img {
+      height: 40px;
+      margin-bottom: 10px;
+    }
+
+    .footer-logo p {
+      font-size: 0.875rem;
+      font-weight: 300;
+      color: #ddd;
+    }
+
+    .footer-links h3,
+    .footer-social h3,
+    .footer-contact h3,
+    .footer-disclaimer h3 {
+      font-size: 1.125rem;
+      font-weight: 600;
+      margin-bottom: 15px;
+      color: #00cc00;
+    }
+
+    .footer-links ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .footer-links ul li {
+      margin-bottom: 10px;
+    }
+
+    .footer-links ul li a {
+      font-size: 0.875rem;
+      color: #ddd;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .footer-links ul li a:hover {
+      color: #00cc00;
+    }
+
+    .footer-social .social-icons {
+      display: flex;
+      gap: 15px;
+    }
+
+    .footer-social .social-icons a {
+      display: inline-block;
+      transition: transform 0.3s ease;
+    }
+
+    .footer-social .social-icons a:hover {
+      transform: scale(1.1);
+    }
+
+    .footer-social .social-icons img {
+      width: 24px;
+      height: 24px;
+    }
+
+    .footer-contact p,
+    .footer-disclaimer p {
+      font-size: 0.875rem;
+      margin: 5px 0;
+    }
+
+    .footer-disclaimer a {
+      color: #00cc00;
+      text-decoration: underline;
+    }
+
+    .footer-disclaimer a:hover {
+      color: #fff;
+    }
+
+    .footer-bottom {
+      text-align: center;
+      margin-top: 20px;
+      padding-top: 20px;
+      border-top: 1px solid #444;
+    }
+
+    .footer-bottom p {
+      font-size: 0.875rem;
+      margin: 0;
+    }
+
+    /* Media Queries */
+    @media (max-width: 768px) {
+      header {
+        flex-direction: column;
+        padding: 15px 20px;
+      }
+      nav {
+        flex-direction: column;
+        gap: 15px;
+        margin-top: 15px;
+      }
+      .dropdown-content {
+        left: 50%;
+        transform: translateX(-50%);
+      }
+      .hero, .about-us, .how-it-works, .marketplace, .quantum-marketplace, .dashboard-preview, .real-world-investments, .become-agent, .whitepaper, .testimonials, .faq, .contact, .legal {
+        padding: 40px 20px;
+      }
+      .step, .nft-card, .ai-card, .team-member, .investment-option {
+        max-width: 100%;
+      }
+      .legal-container {
+        padding: 20px;
+      }
+      .legal-icon {
+        width: 50px;
+        height: 50px;
+      }
+      .modal-content {
+        width: 95%;
+      }
+      .modal-header h3 {
+        font-size: 1.75rem;
+      }
+      .modal-body {
+        padding: 20px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .logo img { height: 30px; }
+      .hero h1 { font-size: 1.75rem; }
+      .hero p, .hero .cta { font-size: 0.9rem; }
+      .about-us h2, .how-it-works h2, .marketplace h2, .quantum-marketplace h2, .dashboard-preview h2, .real-world-investments h2, .become-agent h2, .whitepaper h2, .testimonials h2, .faq h2, .contact h2, .legal h2 {
+        font-size: 1.5rem;
+      }
+      .agent-benefit { padding: 20px; }
+      .agent-icon { width: 50px; height: 50px; }
+      .legal-icon { width: 40px; height: 40px; }
+      .modal-header h3 { font-size: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="logo">
+      <img src="https://i.ibb.co/N61T2GkV/logo.png" alt="Quantum Equation Technology Logo" loading="lazy">
+    </div>
+    <nav>
+      <div class="dropdown">
+        <a href="#home" aria-label="Menu">Menu</a>
+        <div class="dropdown-content">
+          <a href="#home">Home</a>
+          <a href="#about">About Us</a>
+          <a href="#how-it-works">How It Works</a>
+          <a href="#marketplace">NFT Marketplace</a>
+          <a href="#quantum-marketplace">Quantum Marketplace</a>
+          <a href="#dashboard">Dashboard</a>
+          <a href="#real-world-investments">Real World Investments</a>
+          <a href="#become-agent">Become an Agent</a>
+          <a href="#whitepaper">Whitepaper</a>
+          <a href="#testimonials">Testimonials</a>
+          <a href="#faq">FAQ</a>
+          <a href="#contact">Contact</a>
+          <a href="#legal">Legal</a>
+        </div>
+      </div>
+      <a href="login.html" class="login-signup">Login/Signup</a>
+      <button class="connect-wallet">Connect Wallet</button>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero" id="home">
+    <div class="hero-slide active" style="background-image: url('https://images.unsplash.com/photo-1624994895603-5791c2b2e7a4?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');">
+      <div class="hero-content">
+        <h1>Quantum Equation Technology</h1>
+        <p>Own smart contracts via NFTs with a 3% monthly yield paid 70% USDT, 30% QET.</p>
+        <button class="cta">Mint Your NFT Now</button>
+      </div>
+    </div>
+    <div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1641938116945-0e0f12f8f7f9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');">
+      <div class="hero-content">
+        <h1>Smart Contracts on Blockchain</h1>
+        <p>Securely invest in smart contracts with QET token integration.</p>
+        <button class="cta">Explore Marketplace</button>
+      </div>
+    </div>
+    <div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1620641788421-4c3e4e8c75e8?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');">
+      <div class="hero-content">
+        <h1>Join the QET Revolution</h1>
+        <p>Earn rewards with our agent program and QET token.</p>
+        <button class="cta">Join Agent Program</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Us Section -->
+  <section class="about-us pattern-bg" id="about">
+    <h2>About Quantum Equation Technology</h2>
+    <p>Quantum Equation Technology (QET) is pioneering the future of decentralized finance by combining smart contracts with NFTs. Our mission is to provide secure, transparent, and sustainable investment opportunities backed by real-world assets.</p>
+    <p>Founded in 2023, our team brings decades of experience in blockchain, finance, and real estate to deliver a platform that ensures guaranteed payouts and avoids Ponzi schemes.</p>
+    <div class="team">
+      <div class="team-member">
+        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" alt="John Doe">
+        <h3>John Doe</h3>
+        <p>CEO & Founder</p>
+      </div>
+      <div class="team-member">
+        <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" alt="Jane Smith">
+        <h3>Jane Smith</h3>
+        <p>CTO</p>
+      </div>
+      <div class="team-member">
+        <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" alt="Alex Kim">
+        <h3>Alex Kim</h3>
+        <p>COO</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works Section -->
+  <section class="how-it-works pattern-bg" id="how-it-works">
+    <h2>How Quantum Equation Technology Works</h2>
+    <div class="steps">
+      <div class="step">
+        <img src="https://cdn-icons-png.flaticon.com/512/2590/2590452.png" alt="Mint Icon" loading="lazy">
+        <h3>Mint Your NFT</h3>
+        <p>Purchase an NFT to own a smart contract on quantumequation.cloud.</p>
+      </div>
+      <div class="step">
+        <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="Earn Icon" loading="lazy">
+        <h3>Earn 3% Monthly</h3>
+        <p>Receive 3% yield monthly: 70% USDT, 30% QET via smart contracts.</p>
+      </div>
+      <div class="step">
+        <img src="https://cdn-icons-png.flaticon.com/512/4290/4290855.png" alt="Trade Icon" loading="lazy">
+        <h3>Trade Your NFT</h3>
+        <p>Sell your smart contract NFT on open markets like OpenSea.</p>
+      </div>
+      <div class="step">
+        <img src="https://cdn-icons-png.flaticon.com/512/2921/2921222.png" alt="Royalty Icon" loading="lazy">
+        <h3>7% Royalties</h3>
+        <p>QET earns 7% on resales, enhancing token ecosystem value.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- NFT Marketplace Section -->
+  <section class="marketplace" id="marketplace">
+    <h2>QET NFT Marketplace</h2>
+    <div class="nft-listings">
+      <div class="nft-card">
+        <img src="https://images.unsplash.com/photo-1617791160536-598cf83abd84?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="QET Contract #001" loading="lazy">
+        <h3>QET Contract #001</h3>
+        <p class="price">$750</p>
+        <p>Last Sale: $700</p>
+      </div>
+      <div class="nft-card">
+        <img src="https://images.unsplash.com/photo-1620207419127-576dd3b52b68?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="QET Contract #042" loading="lazy">
+        <h3>QET Contract #042</h3>
+        <p class="price">$820</p>
+        <p>Last Sale: $780</p>
+      </div>
+      <div class="nft-card">
+        <img src="https://images.unsplash.com/photo-1634143399558-6c4e3630ebfa?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="QET Contract #089" loading="lazy">
+        <h3>QET Contract #089</h3>
+        <p class="price">$900</p>
+        <p>Last Sale: $850</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Quantum Marketplace Section -->
+  <section class="quantum-marketplace" id="quantum-marketplace">
+    <h2>Quantum Marketplace - AI Products</h2>
+    <div class="ai-listings">
+      <div class="ai-card">
+        <img src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="AI Chatbot" loading="lazy">
+        <h3>AI Chatbot Suite</h3>
+        <p class="price">$1,200</p>
+        <p>A customizable AI chatbot for customer service and engagement.</p>
+      </div>
+      <div class="ai-card">
+        <img src="https://images.unsplash.com/photo-1633613286848-e6f43bbafb8d?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="AI Analytics" loading="lazy">
+        <h3>AI Predictive Analytics</h3>
+        <p class="price">$1,500</p>
+        <p>Advanced analytics tool for forecasting trends and behaviors.</p>
+      </div>
+      <div class="ai-card">
+        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="AI Automation" loading="lazy">
+        <h3>AI Automation Engine</h3>
+        <p class="price">$2,000</p>
+        <p>Automate workflows with our cutting-edge AI engine.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Dashboard Preview Section -->
+  <section class="dashboard-preview" id="dashboard">
+    <h2>Your QET Dashboard</h2>
+    <img src="https://images.unsplash.com/photo-1634128221889-82e3a91d2379?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Dashboard Preview" loading="lazy">
+    <button class="cta">Sign Up to Access</button>
+  </section>
+
+  <!-- QET Real World Investments Section -->
+  <section class="real-world-investments" id="real-world-investments">
+    <h2>QET Real World Investments</h2>
+    <p>Our liquidity pool is backed by tangible, revenue-generating assets, ensuring guaranteed 3% monthly payouts and avoiding Ponzi schemes. Transparency and sustainability are at our core.</p>
+    <div class="investment-options">
+      <div class="investment-option">
+        <img src="https://images.unsplash.com/photo-1560518883-2e5c1068c0fb?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="Real Estate">
+        <h3>Real Estate Ventures</h3>
+        <p>We invest in rental properties across major cities, generating steady cash flow to support the QET liquidity pool.</p>
+      </div>
+      <div class="investment-option">
+        <img src="https://images.unsplash.com/photo-1473280614-7c0ac1f2e4b9?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="Renewable Energy">
+        <h3>Renewable Energy Projects</h3>
+        <p>Solar and wind farms provide consistent returns, contributing to payouts and promoting sustainability.</p>
+      </div>
+      <div class="investment-option">
+        <img src="https://images.unsplash.com/photo-1562408590-e32931084e23?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="Tech Startups">
+        <h3>Tech Startup Equity</h3>
+        <p>Stakes in vetted blockchain and fintech startups add diversified revenue to our ecosystem.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Become an Agent Section -->
+  <section class="become-agent" id="become-agent">
+    <h2>Become a QET Agent</h2>
+    <p>Earn QET token commissions by promoting smart contract NFTs.</p>
+    <div class="agent-benefits">
+      <div class="agent-benefit">
+        <img src="https://img.icons8.com/3d-fluency/94/coins.png" alt="Lucrative Commissions Icon" class="agent-icon" loading="lazy">
+        <h3>Lucrative Commissions</h3>
+        <p>Earn 10% in QET on every NFT sale through your referrals.</p>
+      </div>
+      <div class="agent-benefit">
+        <img src="https://img.icons8.com/3d-fluency/94/books.png" alt="Exclusive Resources Icon" class="agent-icon" loading="lazy">
+        <h3>Exclusive Resources</h3>
+        <p>Access training to promote QET smart contracts.</p>
+      </div>
+      <div class="agent-benefit">
+        <img src="https://img.icons8.com/3d-fluency/94/globe.png" alt="Global Community Icon" class="agent-icon" loading="lazy">
+        <h3>Global Community</h3>
+        <p>Join agents worldwide to grow the QET ecosystem.</p>
+      </div>
+    </div>
+    <div class="referral-info">
+      <h3>Referral Bonuses</h3>
+      <p>Invite friends with your unique referral link and earn 10% in QET for every NFT they purchase. Get your link from your dashboard after signing up!</p>
+    </div>
+    <button class="cta">Join Now</button>
+  </section>
+
+  <!-- Whitepaper Section -->
+  <section class="whitepaper pattern-bg" id="whitepaper">
+    <h2>Technical Details & Whitepaper</h2>
+    <p>Learn about our smart contract architecture, QET tokenomics, and how we ensure a sustainable 3% monthly yield backed by real-world assets.</p>
+    <button class="cta">Download Whitepaper</button>
+  </section>
+
+  <!-- Testimonials Section -->
+  <section class="testimonials" id="testimonials">
+    <h2>What Our Investors Say</h2>
+    <div class="testimonial-slider" role="region" aria-label="Testimonial Slider">
+      <div class="testimonial-slide active">
+        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=80&q=80" alt="Alex Carter" loading="lazy">
+        <p>"The 3% yield in USDT and QET from QET smart contract NFTs is a game-changer. I’ve earned $225 monthly with my 10 NFTs!"</p>
+        <h4>Alex Carter</h4>
+        <span>Crypto Investor</span>
+      </div>
+      <div class="testimonial-slide">
+        <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&auto=format&fit=crop&w=80&q=80" alt="Priya Sharma" loading="lazy">
+        <p>"Trading QET NFTs on OpenSea is seamless. I made a $2,000 profit on my last trade!"</p>
+        <h4>Priya Sharma</h4>
+        <span>NFT Trader</span>
+      </div>
+      <div class="testimonial-slide">
+        <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?ixlib=rb-4.0.3&auto=format&fit=crop&w=80&q=80" alt="Liam Nguyen" loading="lazy">
+        <p>"Promoting QET as an agent earns me steady QET token rewards. It’s a solid side hustle."</p>
+        <h4>Liam Nguyen</h4>
+        <span>QET Agent</span>
+      </div>
+    </div>
+    <div class="slider-controls">
+      <button id="prevBtn" aria-label="Previous Testimonial">Previous</button>
+      <button id="nextBtn" aria-label="Next Testimonial">Next</button>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="faq pattern-bg" id="faq">
+    <h2>Frequently Asked Questions</h2>
+    <div class="faq-list">
+      <div class="faq-item">
+        <h3>What is QET?</h3>
+        <p>QET is a platform that lets you own smart contracts via NFTs, earning a 3% monthly yield paid in 70% USDT and 30% QET.</p>
+      </div>
+      <div class="faq-item">
+        <h3>How are payouts guaranteed?</h3>
+        <p>Our liquidity pool is backed by revenue-generating real-world assets like real estate and renewable energy, ensuring consistent payouts.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Is this a Ponzi scheme?</h3>
+        <p>No. Unlike Ponzi schemes, QET’s revenue comes from tangible investments, not just new user funds. We prioritize transparency and sustainability.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Can I trade my NFTs?</h3>
+        <p>Yes, QET NFTs are tradable on platforms like OpenSea, with QET earning 7% royalties on resales.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Form Section -->
+  <section class="contact" id="contact">
+    <h2>Contact Us</h2>
+    <form action="#" method="POST">
+      <input type="text" name="name" placeholder="Your Name" required>
+      <input type="email" name="email" placeholder="Your Email" required>
+      <textarea name="message" placeholder="Your Message" required></textarea>
+      <button type="submit">Send Message</button>
+    </form>
+  </section>
+
+  <!-- Legal/Disclaimer Section -->
+  <section class="legal pattern-bg" id="legal">
+    <div class="legal-container">
+      <img src="https://img.icons8.com/ios-filled/100/00cc00/scales.png" alt="Scales of Justice" class="legal-icon" loading="lazy">
+      <h2>Legal & Disclaimer</h2>
+      <p>Quantum Equation Technology offers smart contract NFTs with a 3% monthly yield (70% USDT, 30% QET). Investments involve risks, including loss of principal. Returns are not guaranteed by any government entity.</p>
+      <p>Consult a financial advisor before investing. For full terms, privacy policy, and risk disclosure, please <a id="open-modal">click here</a></p>
+    </div>
+  </section>
+
+  <!-- Modal with Legal Disclaimer -->
+  <div class="modal" id="legal-modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>Quantum Equation Technology Legal Disclaimer</h3>
+        <button class="close-btn" id="close-modal">×</button>
+      </div>
+      <div class="modal-body">
+        <p><strong>Last Updated: March 14, 2025</strong></p>
+        <p>Quantum Equation Technology ("QET", "we", "us", or "our") provides a decentralized platform enabling users to purchase non-fungible tokens (NFTs) representing ownership in smart contracts, which aim to deliver a 3% monthly yield paid in 70% Tether (USDT) and 30% QET tokens. While we strive to offer a transparent, secure, and sustainable investment opportunity, participation involves inherent risks. This disclaimer outlines the terms, risks, and assurances associated with engaging in our ecosystem.</p>
+        <p><strong>Investment Risks:</strong> Cryptocurrency and NFT investments, including those offered by QET, are speculative and volatile. The value of NFTs, USDT, and QET tokens may fluctuate significantly, and you may lose part or all of your investment. Past performance is not indicative of future results. The 3% monthly yield is not a fixed guarantee but a target based on the performance of our liquidity pool, which is subject to market conditions, asset performance, and operational risks.</p>
+        <p><strong>Assurance of Transparency:</strong> QET’s liquidity pool is backed by tangible, revenue-generating assets, including real estate ventures, renewable energy projects, and equity in vetted tech startups. We are committed to avoiding Ponzi-like structures by ensuring payouts are derived from real-world revenue streams rather than solely new investor funds. Our smart contracts are designed to be audited by third-party experts (audit reports available upon request via support@quantumequation.cloud), and we maintain open communication about asset performance through periodic updates on our dashboard.</p>
+        <p><strong>No Government Backing:</strong> QET’s offerings are not insured or guaranteed by any government entity, bank, or regulatory body. Participation is at your own risk, and no recourse is available through traditional financial systems in the event of loss.</p>
+        <p><strong>Legal Compliance:</strong> QET operates in accordance with applicable blockchain and cryptocurrency regulations as of March 14, 2025. However, laws vary by jurisdiction, and it is your responsibility to ensure compliance with local regulations. We do not provide legal, tax, or financial advice; consult a qualified professional before participating.</p>
+        <p><strong>Technical Risks:</strong> Smart contracts and blockchain technology are subject to vulnerabilities, including hacks, bugs, or network failures. While we implement rigorous security measures, no system is entirely risk-free. QET is not liable for losses due to technical failures beyond our reasonable control.</p>
+        <p><strong>Trading and Royalties:</strong> QET NFTs are tradable on secondary markets (e.g., OpenSea), with QET earning a 7% royalty on resales to support the ecosystem. Prices on these markets are determined by supply and demand, not QET, and may not reflect the intrinsic value of the underlying smart contract.</p>
+        <p><strong>Limitation of Liability:</strong> To the fullest extent permitted by law, QET, its affiliates, and its team shall not be liable for any direct, indirect, incidental, or consequential damages arising from your participation, including loss of funds, data, or profits. Your use of our platform constitutes acceptance of these risks.</p>
+        <p><strong>Assurance of Sustainability:</strong> Our commitment to sustainability is rooted in diversified investments and a revenue model designed for long-term viability. We aim to maintain the 3% monthly yield through careful asset management and reinvestment, though external factors (e.g., economic downturns, regulatory changes) may impact outcomes.</p>
+        <p><strong>Contact Us:</strong> For questions, concerns, or to request additional documentation (e.g., terms of service, privacy policy), contact us at support@quantumequation.cloud or +1 (123) 456-7890.</p>
+        <p><strong>Acceptance:</strong> By engaging with QET’s platform, you acknowledge that you have read, understood, and agreed to this disclaimer. We encourage due diligence and informed decision-making.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-content">
+      <div class="footer-logo">
+        <img src="https://i.ibb.co/N61T2GkV/logo.png" alt="Quantum Equation Technology Logo" loading="lazy">
+        <p>Quantum Equation Technology – Smart Contracts via NFTs</p>
+      </div>
+      <div class="footer-links">
+        <h3>Quick Links</h3>
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#about">About Us</a></li>
+          <li><a href="#how-it-works">How It Works</a></li>
+          <li><a href="#marketplace">NFT Marketplace</a></li>
+          <li><a href="#quantum-marketplace">Quantum Marketplace</a></li>
+          <li><a href="#dashboard">Dashboard</a></li>
+          <li><a href="#real-world-investments">Real World Investments</a></li>
+          <li><a href="#become-agent">Become an Agent</a></li>
+          <li><a href="#whitepaper">Whitepaper</a></li>
+          <li><a href="#testimonials">Testimonials</a></li>
+          <li><a href="#faq">FAQ</a></li>
+          <li><a href="#contact">Contact</a></li>
+          <li><a href="#legal">Legal</a></li>
+        </ul>
+      </div>
+      <div class="footer-social">
+        <h3>Follow Us</h3>
+        <div class="social-icons">
+          <a href="https://x.com/QuantumEqT" target="_blank" aria-label="Twitter">
+            <img src="https://cdn-icons-png.flaticon.com/512/124/124021.png" alt="X (Twitter)" loading="lazy">
+          </a>
+          <a href="https://discord.gg/34vYSzk7" target="_blank" aria-label="Discord">
+            <img src="https://cdn-icons-png.flaticon.com/512/3670/3670157.png" alt="Discord" loading="lazy">
+          </a>
+          <a href="https://t.me/quantumequation" target="_blank" aria-label="Telegram">
+            <img src="https://cdn-icons-png.flaticon.com/512/2111/2111644.png" alt="Telegram" loading="lazy">
+          </a>
+          <a href="https://www.tiktok.com/@qet344" target="_blank" aria-label="TikTok">
+            <img src="https://cdn-icons-png.flaticon.com/512/3046/3046121.png" alt="TikTok" loading="lazy">
+          </a>
+          <a href="https://www.youtube.com/channel/UCEyL01IhqiCrGoBrIm37VAg" target="_blank" aria-label="YouTube">
+            <img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png" alt="YouTube" loading="lazy">
+          </a>
+        </div>
+      </div>
+      <div class="footer-contact">
+        <h3>Contact Us</h3>
+        <p>Email: support@quantumequation.cloud</p>
+        <p>Phone: +1 (123) 456-7890</p>
+      </div>
+      <div class="footer-disclaimer">
+        <h3>Disclaimer</h3>
+        <p>QET offers smart contract NFTs with a 3% monthly yield (70% USDT, 30% QET). Investments carry risks; see full disclaimer.</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 Quantum Equation Technology. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- JavaScript -->
+  <script>
+    // Hero Slider
+    const heroSlides = document.querySelectorAll('.hero-slide');
+    let currentHeroSlide = 0;
+    let heroInterval;
+
+    function showHeroSlide(index) {
+      heroSlides.forEach((slide, i) => {
+        slide.classList.toggle('active', i === index);
+      });
+    }
+
+    function nextHeroSlide() {
+      currentHeroSlide = (currentHeroSlide + 1) % heroSlides.length;
+      showHeroSlide(currentHeroSlide);
+    }
+
+    function startHeroInterval() {
+      heroInterval = setInterval(nextHeroSlide, 5000);
+    }
+
+    function stopHeroInterval() {
+      clearInterval(heroInterval);
+    }
+
+    showHeroSlide(currentHeroSlide);
+    startHeroInterval();
+
+    const heroSection = document.querySelector('.hero');
+    heroSection.addEventListener('mouseenter', stopHeroInterval);
+    heroSection.addEventListener('mouseleave', startHeroInterval);
+
+    // Testimonial Slider
+    const testimonialSlides = document.querySelectorAll('.testimonial-slide');
+    let currentTestimonialSlide = 0;
+    let testimonialInterval;
+
+    function showTestimonialSlide(index) {
+      testimonialSlides.forEach((slide, i) => {
+        slide.classList.toggle('active', i === index);
+      });
+    }
+
+    function nextTestimonialSlide() {
+      currentTestimonialSlide = (currentTestimonialSlide + 1) % testimonialSlides.length;
+      showTestimonialSlide(currentTestimonialSlide);
+    }
+
+    function prevTestimonialSlide() {
+      currentTestimonialSlide = (currentTestimonialSlide - 1 + testimonialSlides.length) % testimonialSlides.length;
+      showTestimonialSlide(currentTestimonialSlide);
+    }
+
+    function startTestimonialInterval() {
+      testimonialInterval = setInterval(nextTestimonialSlide, 5000);
+    }
+
+    function stopTestimonialInterval() {
+      clearInterval(testimonialInterval);
+    }
+
+    showTestimonialSlide(currentTestimonialSlide);
+    startTestimonialInterval();
+
+    const nextBtn = document.getElementById('nextBtn');
+    const prevBtn = document.getElementById('prevBtn');
+    nextBtn.addEventListener('click', nextTestimonialSlide);
+    prevBtn.addEventListener('click', prevTestimonialSlide);
+
+    const testimonialSection = document.querySelector('.testimonial-slider');
+    testimonialSection.addEventListener('mouseenter', stopTestimonialInterval);
+    testimonialSection.addEventListener('mouseleave', startTestimonialInterval);
+
+    // Keyboard Navigation for Testimonial Slider
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight') nextTestimonialSlide();
+      if (e.key === 'ArrowLeft') prevTestimonialSlide();
+    });
+
+    // Smooth Scroll
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth' });
+        }
+      });
+    });
+
+    // Modal Functionality
+    const modal = document.getElementById('legal-modal');
+    const openModal = document.getElementById('open-modal');
+    const closeModal = document.getElementById('close-modal');
+    const modalContent = document.querySelector('.modal-content');
+
+    openModal.addEventListener('click', () => {
+      modal.style.display = 'flex';
+    });
+
+    closeModal.addEventListener('click', () => {
+      modalContent.style.animation = 'slideOutModal 0.4s ease-in';
+      modal.style.animation = 'fadeInModal 0.4s ease-in reverse';
+      setTimeout(() => {
+        modal.style.display = 'none';
+        modalContent.style.animation = 'slideInModal 0.5s ease-out';
+      }, 400);
+    });
+
+    window.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        closeModal.click();
+      }
+    });
+
+    // PWA Service Worker Registration with Error Handling
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/service-worker.js')
+          .then(reg => console.log('Service Worker registered:', reg))
+          .catch(err => console.error('Service Worker registration failed:', err));
+      });
+    }
+  </script>
+</body>
+</html>
