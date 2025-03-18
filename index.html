@@ -479,7 +479,7 @@
       font-weight: 600;
     }
 
-  /* Enhanced Dashboard Section */
+ <!-- Enhanced Dashboard Section -->
 .dashboard-preview {
   padding: 80px 40px;
   background: linear-gradient(135deg, #1a1a1a, #2a2a2a);
@@ -610,36 +610,21 @@
 
 .join-now-btn {
   display: inline-block;
-  padding: 15px 40px;
+  padding: 15px 30px;
   font-size: 1.2rem;
   font-weight: 600;
-  color: #fff;
-  background: linear-gradient(45deg, #00cc00, #00ff00);
-  border: none;
-  border-radius: 50px;
-  cursor: pointer;
-  position: relative;
-  overflow: hidden;
+  background-color: #00cc00;
+  color: #000;
+  border-radius: 5px;
+  font-weight: 600;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-}
-
-.join-now-btn::before {
-  content: '';
-  position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-  transform: rotate(45deg);
-  animation: btnGlow 2s linear infinite;
+  border: none;
+  cursor: pointer;
 }
 
 .join-now-btn:hover {
   transform: scale(1.05);
-  box-shadow: 0 0 20px rgba(0, 204, 0, 0.5);
+  box-shadow: 0 0 15px rgba(0, 204, 0, 0.5);
 }
 
 @keyframes btnGlow {
