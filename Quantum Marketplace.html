@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quantum Marketplace - AI Products</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #1a1a1a;
+            color: #b0b0b0;
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Background */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://i.imgur.com/pCc1Q9T.jpeg') no-repeat center center/cover;
+            opacity: 0.1;
+            z-index: -1;
+        }
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: -1;
+        }
+
+        /* Header Styles */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 40px;
+            background: linear-gradient(145deg, rgba(30, 30, 30, 0.9), rgba(20, 20, 20, 0.9));
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(0, 255, 136, 0.2);
+        }
+        .logo img {
+            height: 40px;
+        }
+
+        /* Dropdown Menu */
+        .nav-container {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+        .menu-link {
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            color: #b0b0b0;
+            text-decoration: none;
+            padding: 10px 20px;
+            transition: color 0.3s ease, background-color 0.3s ease;
+            cursor: pointer;
+        }
+        .menu-link:hover {
+            color: #00ff88;
+            background-color: rgba(0, 255, 136, 0.1);
+            border-radius: 5px;
+        }
+        .dropdown {
+            display: none;
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: linear-gradient(145deg, rgba(30, 30, 30, 0.9), rgba(20, 20, 20, 0.9));
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(0, 255, 136, 0.2);
+            border-radius: 5px;
+            box-shadow: 0 0 15px rgba(0, 255, 136, 0.3);
+            z-index: 1001;
+            min-width: 200px;
+        }
+        .nav-container:hover .dropdown {
+            display: block;
+        }
+        .dropdown a {
+            display: block;
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            color: #b0b0b0;
+            text-decoration: none;
+            padding: 10px 20px;
+            transition: color 0.3s ease, background-color 0.3s ease;
+        }
+        .dropdown a:hover {
+            color: #00ff88;
+            background-color: rgba(0, 255, 136, 0.1);
+        }
+        .connect-wallet {
+            background: linear-gradient(90deg, #00ff88, #00ccff);
+            color: #000;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: none;
+            cursor: pointer;
+            margin-left: 20px;
+        }
+        .connect-wallet:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 15px rgba(0, 255, 136, 0.5);
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 250px;
+            background: linear-gradient(145deg, rgba(30, 30, 30, 0.9), rgba(20, 20, 20, 0.9));
+            backdrop-filter: blur(10px);
+            color: #fff;
+            position: fixed;
+            top: 60px;
+            bottom: 0;
+            left: 0;
+            padding: 20px;
+            overflow-y: auto;
+            border-right: 1px solid rgba(0, 255, 136, 0.2);
+            z-index: 999;
+            transition: transform 0.3s ease;
+        }
+        .sidebar h2 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 24px;
+            margin-bottom: 20px;
+            text-align: center;
+            background: linear-gradient(90deg, #00ff88, #00ccff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 8px rgba(0, 255, 136, 0.4);
+        }
+        .sidebar ul {
+            list-style: none;
+        }
+        .sidebar ul li {
+            padding: 15px;
+            cursor: pointer;
+            transition: background 0.3s ease, color 0.3s ease, transform 0.3s ease;
+            border-radius: 5px;
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+        }
+        .sidebar ul li:hover, .sidebar ul li.active {
+            background: linear-gradient(90deg, rgba(0, 255, 136, 0.2), rgba(0, 204, 255, 0.2));
+            color: #00ff88;
+            transform: translateX(5px);
+            box-shadow: 0 0 10px rgba(0, 255, 136, 0.3);
+        }
+
+        /* Main Content */
+        .main-content {
+            margin-left: 250px;
+            padding: 40px;
+            width: calc(100% - 250px);
+            flex: 1;
+            min-height: calc(100vh - 60px - 150px); /* Adjusted for header and footer */
+        }
+        .header {
+            margin-bottom: 30px;
+        }
+        .header h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 32px;
+            background: linear-gradient(90deg, #00ff88, #00ccff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 10px rgba(0, 255, 136, 0.5);
+        }
+
+        /* Card Grid */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        .card {
+            background: linear-gradient(145deg, rgba(30, 30, 30, 0.9), rgba(20, 20, 20, 0.9));
+            backdrop-filter: blur(10px);
+            padding: 20px;
+            border-radius: 10px;
+            border: 1px solid rgba(0, 255, 136, 0.2);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease;
+            animation: fadeIn 0.8s ease-out forwards;
+        }
+        .card:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 0 25px rgba(0, 255, 136, 0.6), 0 0 50px rgba(0, 204, 255, 0.3);
+            border-color: #00ff88;
+        }
+        .card h3 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 18px;
+            margin-bottom: 10px;
+            background: linear-gradient(90deg, #00ff88, #00ccff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 8px rgba(0, 255, 136, 0.4);
+        }
+        .card ul {
+            list-style: none;
+        }
+        .card ul li {
+            font-family: 'Inter', sans-serif;
+            font-size: 14px;
+            margin-bottom: 8px;
+            color: #b0b0b0;
+            padding: 10px;
+            cursor: pointer;
+            transition: background 0.3s ease, color 0.3s ease, transform 0.3s ease;
+            border-radius: 5px;
+        }
+        .card ul li:hover {
+            background: linear-gradient(90deg, rgba(0, 255, 136, 0.1), rgba(0, 204, 255, 0.1));
+            color: #00ff88;
+            transform: translateX(5px);
+            box-shadow: 0 0 10px rgba(0, 255, 136, 0.2);
+        }
+
+        /* Footer Styles */
+        footer {
+            padding: 20px 40px;
+            background: linear-gradient(145deg, rgba(30, 30, 30, 0.9), rgba(20, 20, 20, 0.9));
+            backdrop-filter: blur(10px);
+            border-top: 1px solid rgba(0, 255, 136, 0.2);
+            margin-left: 250px;
+            width: calc(100% - 250px);
+            z-index: 1;
+            position: relative;
+        }
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .footer-logo img {
+            height: 40px;
+            margin-bottom: 5px;
+        }
+        .footer-logo p {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 300;
+            color: #b0b0b0;
+        }
+        .footer-links h3,
+        .footer-social h3,
+        .footer-contact h3 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            background: linear-gradient(90deg, #00ff88, #00ccff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 5px rgba(0, 255, 136, 0.3);
+        }
+        .footer-links ul {
+            list-style: none;
+            padding: 0;
+        }
+        .footer-links ul li {
+            margin-bottom: 5px;
+        }
+        .footer-links ul li a {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.75rem;
+            color: #b0b0b0;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        .footer-links ul li a:hover {
+            color: #00ff88;
+            text-shadow: 0 0 5px rgba(0, 255, 136, 0.3);
+        }
+        .footer-social .social-icons {
+            display: flex;
+            gap: 15px;
+        }
+        .footer-social .social-icons a {
+            display: inline-block;
+            transition: transform 0.3s ease;
+        }
+        .footer-social .social-icons a:hover {
+            transform: scale(1.1);
+        }
+        .footer-social .social-icons img {
+            width: 24px;
+            height: 24px;
+            filter: drop-shadow(0 0 5px rgba(0, 255, 136, 0.3));
+        }
+        .footer-contact p {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.75rem;
+            margin: 5px 0;
+            color: #b0b0b0;
+        }
+        .footer-contact a {
+            color: #00ff88;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        .footer-contact a:hover {
+            color: #00ccff;
+            text-shadow: 0 0 5px rgba(0, 204, 255, 0.5);
+        }
+        .footer-bottom {
+            text-align: center;
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px solid rgba(0, 255, 136, 0.2);
+        }
+        .footer-bottom p {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.75rem;
+            margin: 0;
+            color: #b0b0b0;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 100%;
+                height: auto;
+                position: static;
+                top: 0;
+                bottom: auto;
+                border-right: none;
+                border-bottom: 1px solid rgba(0, 255, 136, 0.2);
+            }
+            .main-content {
+                margin-left: 0;
+                width: 100%;
+                min-height: auto;
+            }
+            footer {
+                margin-left: 0;
+                width: 100%;
+            }
+            .card-grid {
+                grid-template-columns: 1fr;
+            }
+            header {
+                flex-direction: column;
+                padding: 15px 20px;
+            }
+            .nav-container {
+                width: 100%;
+                display: flex;
+                justify-content: center;
+                margin-top: 15px;
+            }
+            .dropdown {
+                position: static;
+                width: 100%;
+                text-align: center;
+            }
+            .connect-wallet {
+                margin-left: 0;
+                margin-top: 10px;
+            }
+            .footer-content {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+        }
+        @media (max-width: 480px) {
+            .header h1 {
+                font-size: 24px;
+            }
+            .card h3 {
+                font-size: 16px;
+            }
+            .card ul li {
+                font-size: 12px;
+            }
+            .logo img {
+                height: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="logo">
+            <img src="https://i.ibb.co/N61T2GkV/logo.png" alt="Quantum Equation Technology Logo" loading="lazy">
+        </div>
+        <div class="nav-container">
+            <a href="#" class="menu-link">Menu</a>
+            <div class="dropdown">
+                <a href="#home">Home</a>
+                <a href="#marketplace">Marketplace</a>
+                <a href="#about">About</a>
+                <a href="#contact">Contact</a>
+            </div>
+            <button class="connect-wallet">Connect Wallet</button>
+        </div>
+    </header>
+
+    <!-- Sidebar Navigation -->
+    <div class="sidebar">
+        <h2>Quantum Marketplace</h2>
+        <ul>
+            <li class="active" onclick="showCategory('finance')">Finance</li>
+            <li onclick="showCategory('healthcare')">Healthcare</li>
+            <li onclick="showCategory('real-estate')">Real Estate</li>
+            <li onclick="showCategory('cybersecurity')">Cybersecurity</li>
+            <li onclick="showCategory('aviation')">Aviation</li>
+            <li onclick="showCategory('marine')">Marine</li>
+            <li onclick="showCategory('oil-gas')">Oil & Gas</li>
+            <li onclick="showCategory('agriculture')">Agriculture</li>
+            <li onclick="showCategory('construction')">Construction</li>
+            <li onclick="showCategory('food-beverage')">Food & Beverage</li>
+            <li onclick="showCategory('logistics')">Logistics</li>
+        </ul>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="header">
+            <h1>Explore AI Solutions</h1>
+        </div>
+
+        <div class="card-grid" id="content">
+            <!-- Finance Category -->
+            <div class="card" data-category="finance">
+                <h3>Finance</h3>
+                <ul>
+                    <li onclick="selectProduct('AI Financial Advisor')">AI Financial Advisor – Automated investment and wealth management assistant</li>
+                    <li onclick="selectProduct('Fraud Detection System')">Fraud Detection System – AI-powered fraud prevention for banking transactions</li>
+                    <li onclick="selectProduct('Credit Scoring & Risk Analysis')">Credit Scoring & Risk Analysis – AI-driven loan and creditworthiness assessment</li>
+                    <li onclick="selectProduct('Algorithmic Trading Bot')">Algorithmic Trading Bot – Automated trading with real-time market analysis</li>
+                    <li onclick="selectProduct('Expense & Budget Tracker')">Expense & Budget Tracker – AI-driven personal finance assistant</li>
+                    <li onclick="selectProduct('Finance Chatbot')">Finance Chatbot – AI-powered assistant for banking, loan inquiries, and financial planning</li>
+                </ul>
+            </div>
+
+            <!-- Healthcare Category -->
+            <div class="card" data-category="healthcare" style="display: none;">
+                <h3>Healthcare</h3>
+                <ul>
+                    <li onclick="selectProduct('AI Medical Diagnosis Assistant')">AI Medical Diagnosis Assistant – AI-powered patient symptom checker</li>
+                    <li onclick="selectProduct('Telemedicine Chatbot')">Telemedicine Chatbot – Virtual health consultation assistant</li>
+                    <li onclick="selectProduct('Medical Billing & Coding Automation')">Medical Billing & Coding Automation – AI-powered insurance claims processing</li>
+                    <li onclick="selectProduct('Drug Discovery & Research AI')">Drug Discovery & Research AI – AI-powered pharmaceutical research assistant</li>
+                    <li onclick="selectProduct('Hospital Workflow Optimization AI')">Hospital Workflow Optimization AI – Smart scheduling and resource allocation</li>
+                    <li onclick="selectProduct('Healthcare Chatbot')">Healthcare Chatbot – AI-powered patient support for medical advice, appointment booking, and health FAQs</li>
+                </ul>
+            </div>
+
+            <!-- Real Estate Category -->
+            <div class="card" data-category="real-estate" style="display: none;">
+                <h3>Real Estate</h3>
+                <ul>
+                    <li onclick="selectProduct('AI Property Valuation Tool')">AI Property Valuation Tool – Automated real estate price estimation</li>
+                    <li onclick="selectProduct('Real Estate Chatbot')">Real Estate Chatbot – AI-powered virtual assistant for property inquiries</li>
+                    <li onclick="selectProduct('Tenant Screening & Credit Analysis AI')">Tenant Screening & Credit Analysis AI – Smart tenant risk assessment</li>
+                    <li onclick="selectProduct('Real Estate Lead Generation AI')">Real Estate Lead Generation AI – AI-driven buyer and seller matching</li>
+                    <li onclick="selectProduct('Smart Building Management System')">Smart Building Management System – AI for energy and security optimization</li>
+                    <li onclick="selectProduct('Real Estate Investment Chatbot')">Real Estate Investment Chatbot – AI assistant for property investment insights and market trends</li>
+                </ul>
+            </div>
+
+            <!-- Cybersecurity Category -->
+            <div class="card" data-category="cybersecurity" style="display: none;">
+                <h3>Cybersecurity</h3>
+                <ul>
+                    <li onclick="selectProduct('AI Threat Detection System')">AI Threat Detection System – Real-time cyber threat monitoring</li>
+                    <li onclick="selectProduct('AI Phishing & Fraud Detection')">AI Phishing & Fraud Detection – AI-powered email and website scam detection</li>
+                    <li onclick="selectProduct('Automated Penetration Testing AI')">Automated Penetration Testing AI – AI security vulnerability assessment</li>
+                    <li onclick="selectProduct('AI Identity Verification System')">AI Identity Verification System – Biometric authentication and fraud detection</li>
+                    <li onclick="selectProduct('AI-Powered SOC Assistant')">AI-Powered SOC Assistant – Cyber defense automation</li>
+                    <li onclick="selectProduct('Cybersecurity Chatbot')">Cybersecurity Chatbot – AI-driven security assistant for user education and threat reporting</li>
+                </ul>
+            </div>
+
+            <!-- Aviation Category -->
+            <div class="card" data-category="aviation" style="display: none;">
+                <h3>Aviation</h3>
+                <ul>
+                    <li onclick="selectProduct('AI Flight Route Optimization')">AI Flight Route Optimization – Automated route planning for fuel efficiency</li>
+                    <li onclick="selectProduct('Predictive Maintenance AI')">Predictive Maintenance AI – Real-time aircraft health monitoring</li>
+                    <li onclick="selectProduct('AI Air Traffic Control Assistant')">AI Air Traffic Control Assistant – AI-powered air traffic congestion management</li>
+                    <li onclick="selectProduct('Customer Service Chatbot')">Customer Service Chatbot – AI-driven airline support agent</li>
+                    <li onclick="selectProduct('Baggage Tracking & AI Lost Luggage Assistant')">Baggage Tracking & AI Lost Luggage Assistant – Smart baggage tracking</li>
+                    <li onclick="selectProduct('Aviation Chatbot')">Aviation Chatbot – AI-powered virtual assistant for flight booking, airline FAQs, and real-time updates</li>
+                </ul>
+            </div>
+
+            <!-- Marine Category -->
+            <div class="card" data-category="marine" style="display: none;">
+                <h3>Marine</h3>
+                <ul>
+                    <li onclick="selectProduct('Autonomous Ship Navigation AI')">Autonomous Ship Navigation AI – AI-powered route optimization</li>
+                    <li onclick="selectProduct('AI Vessel Maintenance & Monitoring')">AI Vessel Maintenance & Monitoring – Predictive maintenance for ships</li>
+                    <li onclick="selectProduct('Cargo Load Optimization AI')">Cargo Load Optimization AI – Smart shipping container management</li>
+                    <li onclick="selectProduct('Maritime Cybersecurity AI')">Maritime Cybersecurity AI – AI-based threat detection for marine networks</li>
+                    <li onclick="selectProduct('AI Port Operations Manager')">AI Port Operations Manager – AI-driven logistics and dock scheduling</li>
+                    <li onclick="selectProduct('Maritime Chatbot')">Maritime Chatbot – AI-powered assistant for cargo tracking, vessel inquiries, and port operations</li>
+                </ul>
+            </div>
+
+            <!-- Oil & Gas Category -->
+            <div class="card" data-category="oil-gas" style="display: none;">
+                <h3>Oil & Gas</h3>
+                <ul>
+                    <li onclick="selectProduct('AI-Powered Well Exploration')">AI-Powered Well Exploration – AI-driven oil discovery predictions</li>
+                    <li onclick="selectProduct('Predictive Maintenance for Equipment')">Predictive Maintenance for Equipment – AI for machinery failure prevention</li>
+                    <li onclick="selectProduct('AI-Powered Energy Trading')">AI-Powered Energy Trading – AI-driven commodity price forecasting</li>
+                    <li onclick="selectProduct('AI Leak Detection System')">AI Leak Detection System – Automated pipeline monitoring for leaks</li>
+                    <li onclick="selectProduct('Smart Refinery Operations AI')">Smart Refinery Operations AI – AI-based workflow automation for refineries</li>
+                    <li onclick="selectProduct('Oil & Gas Chatbot')">Oil & Gas Chatbot – AI-driven assistant for market updates, safety guidelines, and compliance queries</li>
+                </ul>
+            </div>
+
+            <!-- Agriculture Category -->
+            <div class="card" data-category="agriculture" style="display: none;">
+                <h3>Agriculture</h3>
+                <ul>
+                    <li onclick="selectProduct('AI-Powered Crop Monitoring')">AI-Powered Crop Monitoring – AI for real-time crop health detection</li>
+                    <li onclick="selectProduct('Smart Irrigation System AI')">Smart Irrigation System AI – AI-based automated water usage optimization</li>
+                    <li onclick="selectProduct('Pest & Disease Detection AI')">Pest & Disease Detection AI – AI-driven early detection of plant diseases</li>
+                    <li onclick="selectProduct('Autonomous Farming Robots')">Autonomous Farming Robots – AI-powered automated planting & harvesting</li>
+                    <li onclick="selectProduct('Agricultural Market Price Prediction')">Agricultural Market Price Prediction – AI-driven commodity price forecasting</li>
+                    <li onclick="selectProduct('Agriculture Chatbot')">Agriculture Chatbot – AI assistant for farmers, providing weather updates, crop recommendations, and market prices</li>
+                    <li onclick="selectProduct('Animal Health Monitoring AI')">Animal Health Monitoring AI – AI-powered livestock disease detection and tracking</li>
+                    <li onclick="selectProduct('Smart Feeding System AI')">Smart Feeding System AI – AI-based automated livestock nutrition and feeding management</li>
+                    <li onclick="selectProduct('AI-Powered Dairy Management')">AI-Powered Dairy Management – Smart AI-based monitoring for milk production and animal well-being</li>
+                </ul>
+            </div>
+
+            <!-- Construction Category -->
+            <div class="card" data-category="construction" style="display: none;">
+                <h3>Construction</h3>
+                <ul>
+                    <li onclick="selectProduct('AI Construction Project Manager')">AI Construction Project Manager – AI-powered workflow and resource planning</li>
+                    <li onclick="selectProduct('Safety Monitoring AI')">Safety Monitoring AI – Real-time AI worker safety monitoring</li>
+                    <li onclick="selectProduct('AI Smart Site Surveillance')">AI Smart Site Surveillance – AI-powered security camera monitoring</li>
+                    <li onclick="selectProduct('Building Energy Optimization AI')">Building Energy Optimization AI – AI-driven energy efficiency solutions</li>
+                    <li onclick="selectProduct('Automated Material Cost Estimator')">Automated Material Cost Estimator – AI-powered construction cost forecasting</li>
+                    <li onclick="selectProduct('Construction Chatbot')">Construction Chatbot – AI-driven assistant for project management, safety guidelines, and supply procurement</li>
+                </ul>
+            </div>
+
+            <!-- Food & Beverage Category -->
+            <div class="card" data-category="food-beverage" style="display: none;">
+                <h3>Food & Beverage</h3>
+                <ul>
+                    <li onclick="selectProduct('AI-Powered Menu Optimization')">AI-Powered Menu Optimization – AI-driven restaurant menu recommendations</li>
+                    <li onclick="selectProduct('Food Safety & Quality Control AI')">Food Safety & Quality Control AI – AI-powered contamination detection</li>
+                    <li onclick="selectProduct('AI-Powered Inventory Management')">AI-Powered Inventory Management – Smart stock monitoring for restaurants</li>
+                    <li onclick="selectProduct('AI Customer Service Chatbot')">AI Customer Service Chatbot – AI-driven virtual assistant for orders</li>
+                    <li onclick="selectProduct('AI-Powered Recipe Generator')">AI-Powered Recipe Generator – Smart nutrition & meal planning AI</li>
+                    <li onclick="selectProduct('Restaurant Chatbot')">Restaurant Chatbot – AI-powered assistant for reservations, menu suggestions, and customer support</li>
+                </ul>
+            </div>
+
+            <!-- Logistics Category -->
+            <div class="card" data-category="logistics" style="display: none;">
+                <h3>Logistics</h3>
+                <ul>
+                    <li onclick="selectProduct('AI Demand Forecasting System')">AI Demand Forecasting System – Predictive AI for supply chain planning</li>
+                    <li onclick="selectProduct('AI Route Optimization for Deliveries')">AI Route Optimization for Deliveries – AI-powered smart logistics routing</li>
+                    <li onclick="selectProduct('AI Warehouse Management System')">AI Warehouse Management System – Smart inventory tracking</li>
+                    <li onclick="selectProduct('AI Fraud Prevention for Supply Chain')">AI Fraud Prevention for Supply Chain – AI-driven risk detection</li>
+                    <li onclick="selectProduct('AI Predictive Fleet Maintenance')">AI Predictive Fleet Maintenance – AI-powered truck and vehicle monitoring</li>
+                    <li onclick="selectProduct('Logistics Chatbot')">Logistics Chatbot – AI-powered assistant for shipment tracking, delivery updates, and supply chain inquiries</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">
+                <img src="https://i.ibb.co/N61T2GkV/logo.png" alt="Quantum Equation Technology Logo" loading="lazy">
+                <p>Quantum Equation Technology<br>Decentralized Finance for the Future</p>
+            </div>
+            <div class="footer-links">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#marketplace">Marketplace</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="#privacy">Privacy Policy</a></li>
+                </ul>
+            </div>
+            <div class="footer-social">
+                <h3>Follow Us</h3>
+                <div class="social-icons">
+                    <a href="https://x.com/QuantumEqT" target="_blank" aria-label="Twitter">
+                        <img src="https://cdn-icons-png.flaticon.com/512/733/733579.png" alt="Twitter" loading="lazy">
+                    </a>
+                    <a href="https://www.tiktok.com/@qet344" target="_blank" aria-label="TikTok">
+                        <img src="https://cdn-icons-png.flaticon.com/512/3046/3046121.png" alt="TikTok" loading="lazy">
+                    </a>
+                    <a href="https://www.youtube.com/channel/UCEyL01IhqiCrGoBrIm37VAg" target="_blank" aria-label="YouTube">
+                        <img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png" alt="YouTube" loading="lazy">
+                    </a>
+                    <a href="https://discord.gg/34vYSzk7" target="_blank" aria-label="Discord">
+                        <img src="https://cdn-icons-png.flaticon.com/512/2111/2111370.png" alt="Discord" loading="lazy">
+                    </a>
+                    <a href="https://t.me/quantumequation" target="_blank" aria-label="Telegram">
+                        <img src="https://cdn-icons-png.flaticon.com/512/2111/2111646.png" alt="Telegram" loading="lazy">
+                    </a>
+                </div>
+            </div>
+            <div class="footer-contact">
+                <h3>Contact Us</h3>
+                <p>Email: <a href="mailto:support@quantumequation.cloud">support@quantumequation.cloud</a></p>
+                <p>Phone: <a href="tel:+18007382023">+1-800-QET-2023</a></p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2025 Quantum Equation Technology. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        function showCategory(category) {
+            // Hide all cards
+            document.querySelectorAll('.card').forEach(card => {
+                card.style.display = 'none';
+                card.style.opacity = '0';
+            });
+
+            // Show selected category card with animation
+            const selectedCard = document.querySelector(`.card[data-category="${category}"]`);
+            selectedCard.style.display = 'block';
+            setTimeout(() => {
+                selectedCard.style.opacity = '1';
+            }, 10);
+
+            // Update active sidebar item
+            document.querySelectorAll('.sidebar ul li').forEach(li => {
+                li.classList.remove('active');
+            });
+            document.querySelector(`.sidebar ul li[onclick="showCategory('${category}')"]`).classList.add('active');
+        }
+
+        function selectProduct(productName) {
+            alert(`You selected: ${productName}`);
+        }
+
+        // Show Finance by default
+        showCategory('finance');
+    </script>
+</body>
+</html>
