@@ -4,94 +4,98 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Agent Dashboard - Quantum Equation Technology</title>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
-      font-family: 'Poppins', sans-serif;
+      font-family: 'Inter', sans-serif;
       background-color: #1a1a1a;
-      color: #fff;
+      color: #b0b0b0;
       line-height: 1.6;
       overflow-x: hidden;
     }
+    h1, h2, h3 { font-family: 'Orbitron', sans-serif; }
 
-    /* Header (from index.html, adjusted) */
+    /* Header Styles */
     header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 1.5rem 4%;
-      background: linear-gradient(90deg, #000, #1a1a1a);
+      padding: 20px 40px;
+      background: linear-gradient(90deg, rgba(0, 0, 0, 0.9), rgba(20, 20, 20, 0.9));
       position: sticky;
       top: 0;
       z-index: 1000;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
+      border-bottom: 1px solid rgba(0, 255, 136, 0.2);
     }
-    .logo img { height: 40px; transition: transform 0.3s ease; }
-    .logo img:hover { transform: scale(1.1); }
-    nav { display: flex; gap: 1.5rem; align-items: center; }
-    .dropdown { position: relative; }
+    .logo img { height: 40px; }
+    nav { display: flex; gap: 20px; align-items: center; }
+    .dropdown { position: relative; display: inline-block; }
     .dropdown > a {
+      font-family: 'Inter', sans-serif;
       font-size: 1rem;
       color: #fff;
-      padding: 0.625rem;
+      padding: 10px 20px;
       transition: color 0.3s ease;
       font-weight: 600;
     }
-    .dropdown:hover > a { color: #00cc00; }
+    .dropdown:hover > a { color: #00ff88; }
     .dropdown-content {
       display: none;
       position: absolute;
-      background-color: #000;
-      min-width: 180px;
-      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4);
-      border-radius: 8px;
+      left: 0;
+      background: linear-gradient(145deg, rgba(30, 30, 30, 0.9), rgba(20, 20, 20, 0.9));
+      min-width: 160px;
+      box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
       z-index: 1;
-      opacity: 0;
-      transform: translateY(10px);
-      transition: opacity 0.3s ease, transform 0.3s ease;
-    }
-    .dropdown:hover .dropdown-content {
-      display: block;
-      opacity: 1;
-      transform: translateY(0);
+      border-radius: 5px;
+      border: 1px solid rgba(0, 255, 136, 0.2);
     }
     .dropdown-content a {
-      color: #ddd;
-      padding: 0.75rem 1.25rem;
+      font-family: 'Inter', sans-serif;
+      color: #b0b0b0;
+      padding: 12px 16px;
       text-decoration: none;
       display: block;
-      font-size: 0.9rem;
-      transition: background-color 0.3s ease, color 0.3s ease;
+      transition: color 0.3s ease, background-color 0.3s ease;
     }
-    .dropdown-content a:hover { background-color: #333; color: #00cc00; }
+    .dropdown-content a:hover {
+      color: #00ff88;
+      background-color: rgba(0, 255, 136, 0.1);
+    }
     .dropdown-content a.active {
-      background-color: #00cc00;
-      color: #000;
-      font-weight: 600;
-    }
-    .logout {
-      font-size: 1rem;
+      background: linear-gradient(90deg, #00ff88, #00ccff);
       color: #fff;
-      padding: 0.625rem 1.25rem;
-      border-radius: 6px;
-      transition: background-color 0.3s ease, transform 0.3s ease;
-    }
-    .logout:hover { background-color: #333; transform: scale(1.05); }
-    .connect-wallet {
-      background: linear-gradient(135deg, #00cc00, #00a300);
-      color: #000;
-      padding: 0.625rem 1.5rem;
-      border-radius: 6px;
       font-weight: 600;
+    }
+    .dropdown:hover .dropdown-content { display: block; }
+    .login-signup {
+      font-family: 'Inter', sans-serif;
       font-size: 1rem;
+      color: #b0b0b0;
+      padding: 10px 20px;
+      border-radius: 5px;
+      transition: color 0.3s ease, background-color 0.3s ease;
+      text-decoration: none;
+    }
+    .login-signup:hover {
+      color: #00ff88;
+      background-color: rgba(0, 255, 136, 0.1);
+    }
+    .connect-wallet {
+      background: linear-gradient(90deg, #00ff88, #00ccff);
+      color: #000;
+      padding: 10px 20px;
+      border-radius: 5px;
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
       border: none;
       cursor: pointer;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
     .connect-wallet:hover {
       transform: scale(1.05);
-      box-shadow: 0 0 20px rgba(0, 204, 0, 0.5);
+      box-shadow: 0 0 15px rgba(0, 255, 136, 0.5);
     }
 
     /* Main Content */
@@ -105,16 +109,19 @@
       font-weight: 700;
       text-align: center;
       margin-bottom: 2.5rem;
-      background: linear-gradient(90deg, #00cc00, #00a300);
+      background: linear-gradient(90deg, #00ff88, #00ccff);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
+      text-shadow: 0 0 10px rgba(0, 255, 136, 0.5);
     }
     h2 {
       font-size: clamp(1.25rem, 3vw, 1.75rem);
       font-weight: 600;
       margin-bottom: 1.25rem;
-      color: #fff;
-      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+      background: linear-gradient(90deg, #00ff88, #00ccff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 0 8px rgba(0, 255, 136, 0.4);
     }
 
     /* Stats Grid */
@@ -125,39 +132,42 @@
       margin-bottom: 2.5rem;
     }
     .stat-card {
-      background: rgba(255, 255, 255, 0.05);
+      background: linear-gradient(145deg, rgba(30, 30, 30, 0.9), rgba(20, 20, 20, 0.9));
       backdrop-filter: blur(10px);
       padding: 1.5rem;
       border-radius: 12px;
       text-align: center;
-      border: 1px solid rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(0, 255, 136, 0.1);
       transition: all 0.3s ease;
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
     }
     .stat-card:hover {
       transform: translateY(-5px);
-      box-shadow: 0 10px 20px rgba(0, 204, 0, 0.3);
+      box-shadow: 0 10px 20px rgba(0, 255, 136, 0.3);
     }
     .stat-card h3 {
       font-size: clamp(1rem, 2vw, 1.25rem);
       font-weight: 400;
-      color: #ddd;
+      color: #b0b0b0;
       margin-bottom: 0.75rem;
+      text-shadow: 0 0 5px rgba(0, 255, 136, 0.3);
     }
     .stat-card p {
+      font-family: 'Inter', sans-serif;
       font-size: clamp(1.25rem, 3vw, 1.75rem);
       font-weight: 600;
-      color: #00cc00;
+      color: #00ff88;
+      text-shadow: 0 0 5px rgba(0, 255, 136, 0.3);
     }
 
     /* Tools Section */
     .tools {
-      background: rgba(255, 255, 255, 0.05);
+      background: linear-gradient(145deg, rgba(30, 30, 30, 0.9), rgba(20, 20, 20, 0.9));
       backdrop-filter: blur(10px);
       padding: 1.5rem;
       border-radius: 12px;
       margin-bottom: 2.5rem;
-      border: 1px solid rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(0, 255, 136, 0.1);
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
     }
     .tool-item {
@@ -165,39 +175,42 @@
       align-items: center;
       gap: 0.5rem;
       font-size: clamp(0.9rem, 2vw, 1rem);
-      color: #ddd;
+      color: #b0b0b0;
     }
     .tool-item a {
-      color: #00cc00;
+      color: #00ff88;
       font-weight: 600;
       text-decoration: none;
       transition: color 0.3s ease;
     }
     .tool-item a:hover {
-      color: #fff;
+      color: #00ccff;
+      text-shadow: 0 0 5px rgba(0, 204, 255, 0.5);
     }
     .copy-btn {
-      background: #00cc00;
+      background: linear-gradient(90deg, #00ff88, #00ccff);
       color: #000;
       padding: 0.25rem 0.75rem;
       border-radius: 4px;
+      font-family: 'Inter', sans-serif;
       font-size: 0.8rem;
       border: none;
       cursor: pointer;
-      transition: background 0.3s ease;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
     .copy-btn:hover {
-      background: #00a300;
+      transform: scale(1.05);
+      box-shadow: 0 0 10px rgba(0, 255, 136, 0.5);
     }
 
     /* Sales Tracker Section */
     .sales-tracker {
-      background: rgba(255, 255, 255, 0.05);
+      background: linear-gradient(145deg, rgba(30, 30, 30, 0.9), rgba(20, 20, 20, 0.9));
       backdrop-filter: blur(10px);
       padding: 1.5rem;
       border-radius: 12px;
       margin-bottom: 2.5rem;
-      border: 1px solid rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(0, 255, 136, 0.1);
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
     }
     .progress-bar {
@@ -209,111 +222,301 @@
     }
     .progress {
       height: 100%;
-      background: linear-gradient(90deg, #00cc00, #00a300);
+      background: linear-gradient(90deg, #00ff88, #00ccff);
       transition: width 0.5s ease;
     }
     .sales-tracker p {
+      font-family: 'Inter', sans-serif;
       font-size: clamp(0.9rem, 2vw, 1rem);
-      color: #ddd;
+      color: #b0b0b0;
       margin-bottom: 0.75rem;
     }
 
     /* Training Resources Section */
     .training-resources {
-      background: rgba(255, 255, 255, 0.05);
+      background: linear-gradient(145deg, rgba(30, 30, 30, 0.9), rgba(20, 20, 20, 0.9));
       backdrop-filter: blur(10px);
       padding: 1.5rem;
       border-radius: 12px;
       margin-bottom: 2.5rem;
-      border: 1px solid rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(0, 255, 136, 0.1);
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
     }
-    .training-resources ul {
-      list-style: none;
-      padding: 0;
-    }
+    .training-resources ul { list-style: none; padding: 0; }
     .training-resources li {
       margin-bottom: 0.75rem;
+      font-family: 'Inter', sans-serif;
       font-size: clamp(0.9rem, 2vw, 1rem);
     }
     .training-resources a {
-      color: #00cc00;
+      color: #00ff88;
       font-weight: 600;
       text-decoration: none;
       transition: color 0.3s ease;
     }
     .training-resources a:hover {
-      color: #fff;
+      color: #00ccff;
+      text-shadow: 0 0 5px rgba(0, 204, 255, 0.5);
     }
 
     /* Profile Section */
     .profile {
-      background: rgba(255, 255, 255, 0.05);
+      background: linear-gradient(145deg, rgba(30, 30, 30, 0.9), rgba(20, 20, 20, 0.9));
       backdrop-filter: blur(10px);
       padding: 1.5rem;
       border-radius: 12px;
       margin-bottom: 2.5rem;
-      border: 1px solid rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(0, 255, 136, 0.1);
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
     }
     .profile p {
+      font-family: 'Inter', sans-serif;
       font-size: clamp(0.9rem, 2vw, 1rem);
-      color: #ddd;
+      color: #b0b0b0;
       margin-bottom: 0.5rem;
     }
     .profile p strong {
-      color: #00cc00;
+      color: #00ff88;
+      text-shadow: 0 0 5px rgba(0, 255, 136, 0.3);
     }
 
     /* History Section */
     .history {
-      background: rgba(255, 255, 255, 0.05);
+      background: linear-gradient(145deg, rgba(30, 30, 30, 0.9), rgba(20, 20, 20, 0.9));
       backdrop-filter: blur(10px);
       padding: 1.5rem;
       border-radius: 12px;
-      border: 1px solid rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(0, 255, 136, 0.1);
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
     }
-    table {
-      width: 100%;
-      border-collapse: collapse;
-    }
+    table { width: 100%; border-collapse: collapse; }
     th, td {
       padding: 0.75rem;
       text-align: left;
       border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      font-family: 'Inter', sans-serif;
       font-size: clamp(0.85rem, 2vw, 1rem);
     }
     th {
-      color: #00cc00;
+      background: linear-gradient(90deg, #00ff88, #00ccff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
       font-weight: 600;
+      text-shadow: 0 0 5px rgba(0, 255, 136, 0.3);
     }
-    td {
-      color: #ddd;
+    td { color: #b0b0b0; }
+    tr:hover { background: rgba(255, 255, 255, 0.05); }
+    .status-pending {
+      color: #ffcc00;
+      text-shadow: 0 0 5px rgba(255, 204, 0, 0.3);
     }
-    tr:hover {
-      background: rgba(255, 255, 255, 0.05);
+    .status-completed {
+      color: #00ff88;
+      text-shadow: 0 0 5px rgba(0, 255, 136, 0.3);
     }
-    .status-pending { color: #ffcc00; }
-    .status-completed { color: #00cc00; }
+
+    /* Footer Styles */
+    footer {
+      padding: 40px 40px;
+      background: linear-gradient(90deg, rgba(0, 0, 0, 0.9), rgba(20, 20, 20, 0.9));
+      border-top: 1px solid rgba(0, 255, 136, 0.2);
+    }
+    .footer-content {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 40px;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    .footer-logo img { height: 40px; margin-bottom: 10px; }
+    .footer-logo p {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.875rem;
+      font-weight: 300;
+      color: #b0b0b0;
+    }
+    .footer-links h3,
+    .footer-social h3,
+    .footer-contact h3,
+    .footer-newsletter h3 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.125rem;
+      font-weight: 600;
+      margin-bottom: 15px;
+      background: linear-gradient(90deg, #00ff88, #00ccff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 0 5px rgba(0, 255, 136, 0.3);
+    }
+    .footer-links ul { list-style: none; padding: 0; }
+    .footer-links ul li { margin-bottom: 10px; }
+    .footer-links ul li a {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.875rem;
+      color: #b0b0b0;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+    .footer-links ul li a:hover {
+      color: #00ff88;
+      text-shadow: 0 0 5px rgba(0, 255, 136, 0.3);
+    }
+    .footer-social .social-icons { display: flex; gap: 15px; }
+    .footer-social .social-icons a {
+      display: inline-block;
+      transition: transform 0.3s ease;
+    }
+    .footer-social .social-icons a:hover { transform: scale(1.1); }
+    .footer-social .social-icons img { width: 24px; height: 24px; }
+    .footer-contact p,
+    .footer-newsletter p {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.875rem;
+      margin: 5px 0;
+      color: #b0b0b0;
+    }
+    .footer-contact a {
+      color: #00ff88;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+    .footer-contact a:hover {
+      color: #00ccff;
+      text-shadow: 0 0 5px rgba(0, 204, 255, 0.5);
+    }
+    .footer-newsletter form { display: flex; gap: 10px; }
+    .footer-newsletter input {
+      padding: 10px;
+      border: 1px solid rgba(0, 255, 136, 0.3);
+      border-radius: 5px;
+      background-color: #1a1a1a;
+      color: #b0b0b0;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.875rem;
+    }
+    .footer-newsletter button {
+      background: linear-gradient(90deg, #00ff88, #00ccff);
+      color: #000;
+      padding: 10px 20px;
+      border-radius: 5px;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.875rem;
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .footer-newsletter button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 15px rgba(0, 255, 136, 0.5);
+    }
+    .footer-bottom {
+      text-align: center;
+      margin-top: 20px;
+      padding-top: 20px;
+      border-top: 1px solid rgba(0, 255, 136, 0.2);
+    }
+    .footer-bottom p {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.875rem;
+      margin: 0;
+      color: #b0b0b0;
+    }
+
+    /* Chatbot Styles */
+    .chatbot {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 1000;
+    }
+    .chatbot-button {
+      background: linear-gradient(90deg, #00ff88, #00ccff);
+      color: #000;
+      border: none;
+      padding: 15px;
+      border-radius: 50%;
+      cursor: pointer;
+      box-shadow: 0 0 15px rgba(0, 255, 136, 0.5);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .chatbot-button:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 20px rgba(0, 255, 136, 0.8);
+    }
+    .chatbot-window {
+      display: none;
+      position: fixed;
+      bottom: 80px;
+      right: 20px;
+      width: 300px;
+      background: linear-gradient(145deg, rgba(30, 30, 30, 0.9), rgba(20, 20, 20, 0.9));
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(0, 255, 136, 0.5);
+      overflow: hidden;
+      border: 1px solid rgba(0, 255, 136, 0.2);
+    }
+    .chatbot-header {
+      background: linear-gradient(90deg, #00ff88, #00ccff);
+      padding: 10px;
+      text-align: center;
+      font-family: 'Orbitron', sans-serif;
+      font-weight: 600;
+      color: #fff;
+      text-shadow: 0 0 5px rgba(0, 255, 136, 0.3);
+    }
+    .chatbot-body {
+      padding: 10px;
+      max-height: 300px;
+      overflow-y: auto;
+    }
+    .chatbot-message {
+      margin-bottom: 10px;
+      padding: 10px;
+      border-radius: 5px;
+      background-color: #2a2a2a;
+      color: #b0b0b0;
+      font-family: 'Inter', sans-serif;
+    }
+    .chatbot-input {
+      display: flex;
+      gap: 10px;
+      padding: 10px;
+      background-color: #2a2a2a;
+    }
+    .chatbot-input input {
+      flex: 1;
+      padding: 10px;
+      border: 1px solid rgba(0, 255, 136, 0.3);
+      border-radius: 5px;
+      background-color: #1a1a1a;
+      color: #b0b0b0;
+      font-family: 'Inter', sans-serif;
+    }
+    .chatbot-input button {
+      background: linear-gradient(90deg, #00ff88, #00ccff);
+      color: #000;
+      padding: 10px 15px;
+      border-radius: 5px;
+      border: none;
+      cursor: pointer;
+      font-family: 'Inter', sans-serif;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .chatbot-input button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 15px rgba(0, 255, 136, 0.5);
+    }
 
     /* Responsiveness */
     @media (max-width: 768px) {
-      header {
-        flex-direction: column;
-        padding: 1.5rem;
-      }
-      nav {
-        flex-direction: column;
-        gap: 1rem;
-        margin-top: 1rem;
-      }
-      .main-content {
-        padding: 1.5rem;
-      }
-      .stats-grid {
-        grid-template-columns: 1fr;
-      }
+      header { flex-direction: column; padding: 15px 20px; }
+      nav { flex-direction: column; gap: 15px; margin-top: 15px; }
+      .dropdown-content { left: 50%; transform: translateX(-50%); }
+      .main-content { padding: 1.5rem; }
+      .stats-grid { grid-template-columns: 1fr; }
+      .footer-content { grid-template-columns: 1fr; }
     }
     @media (max-width: 480px) {
       .logo img { height: 30px; }
@@ -330,26 +533,28 @@
   <!-- Header -->
   <header>
     <div class="logo">
-      <img src="https://i.ibb.co/N61T2GkV/logo.png" alt="Quantum Equation Logo" loading="lazy">
+      <img src="https://i.ibb.co/N61T2GkV/logo.png" alt="Quantum Equation Technology Logo" loading="lazy">
     </div>
     <nav>
       <div class="dropdown">
-        <a href="#home">Menu</a>
+        <a href="#home" aria-label="Menu">Menu</a>
         <div class="dropdown-content">
           <a href="index.html#home">Home</a>
+          <a href="index.html#about">About Us</a>
           <a href="index.html#how-it-works">How It Works</a>
           <a href="index.html#marketplace">NFT Marketplace</a>
-          <a href="index.html#portfolio">Portfolio</a>
-          <a href="index.html#testimonials">Testimonials</a>
-          <a href="index.html#real-life-investments">Real-Life Investments</a>
-          <a href="become-agent.html">Become an Agent</a>
-          <a href="index.html#referral-bonuses">Referral Bonuses</a>
-          <a href="about.html">About Us</a>
-          <a href="faq.html">FAQ</a>
+          <a href="index.html#quantum-marketplace">Quantum Marketplace</a>
           <a href="dashboard.html" class="active">Dashboard</a>
+          <a href="index.html#real-world-investments">Real World Investments</a>
+          <a href="index.html#become-agent">Become an Agent</a>
+          <a href="index.html#whitepaper">Whitepaper</a>
+          <a href="index.html#testimonials">Testimonials</a>
+          <a href="index.html#faq">FAQ</a>
+          <a href="index.html#contact">Contact</a>
+          <a href="index.html#legal">Legal</a>
         </div>
       </div>
-      <a href="logout.html" class="logout">Logout</a>
+      <a href="login.html" class="login-signup">Login/Signup</a>
       <button class="connect-wallet">Connect Wallet</button>
     </nav>
   </header>
@@ -425,7 +630,7 @@
             <th>Date</th>
             <th>Action</th>
             <th>Amount</th>
-            <th>Status</th>
+            <th>Status</ personally, I think this should be changed to "Status" to match the capitalization of the other headers -- I can make this change if you'd like></th>
           </tr>
         </thead>
         <tbody>
@@ -452,14 +657,120 @@
     </div>
   </main>
 
-  <!-- JavaScript for Copy Functionality -->
+  <!-- Footer -->
+  <footer>
+    <div class="footer-content">
+      <div class="footer-logo">
+        <img src="https://i.ibb.co/N61T2GkV/logo.png" alt="Quantum Equation Technology Logo" loading="lazy">
+        <p>Quantum Equation Technology<br>Decentralized Finance for the Future</p>
+      </div>
+      <div class="footer-links">
+        <h3>Quick Links</h3>
+        <ul>
+          <li><a href="index.html#home">Home</a></li>
+          <li><a href="index.html#about">About Us</a></li>
+          <li><a href="index.html#marketplace">NFT Marketplace</a></li>
+          <li><a href="dashboard.html">Dashboard</a></li>
+          <li><a href="index.html#faq">FAQ</a></li>
+          <li><a href="index.html#contact">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-social">
+        <h3>Follow Us</h3>
+        <div class="social-icons">
+          <a href="https://x.com/QuantumEqT" target="_blank" aria-label="Twitter">
+            <img src="https://cdn-icons-png.flaticon.com/512/733/733579.png" alt="Twitter" loading="lazy">
+          </a>
+          <a href="https://www.tiktok.com/@qet344" target="_blank" aria-label="TikTok">
+            <img src="https://cdn-icons-png.flaticon.com/512/3046/3046121.png" alt="TikTok" loading="lazy">
+          </a>
+          <a href="https://www.youtube.com/channel/UCEyL01IhqiCrGoBrIm37VAg" target="_blank" aria-label="YouTube">
+            <img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png" alt="YouTube" loading="lazy">
+          </a>
+          <a href="https://discord.gg/34vYSzk7" target="_blank" aria-label="Discord">
+            <img src="https://cdn-icons-png.flaticon.com/512/2111/2111370.png" alt="Discord" loading="lazy">
+          </a>
+          <a href="https://t.me/quantumequation" target="_blank" aria-label="Telegram">
+            <img src="https://cdn-icons-png.flaticon.com/512/2111/2111646.png" alt="Telegram" loading="lazy">
+          </a>
+        </div>
+      </div>
+      <div class="footer-contact">
+        <h3>Contact Info</h3>
+        <p>Email: <a href="mailto:support@quantumequation.cloud">support@quantumequation.cloud</a></p>
+        <p>Phone: +1-800-QET-2023</p>
+        <p>Address: 123 Blockchain Ave, Crypto City</p>
+      </div>
+      <div class="footer-newsletter">
+        <h3>Newsletter</h3>
+        <p>Stay updated with QET news and offers.</p>
+        <form action="#" method="POST">
+          <input type="email" name="email" placeholder="Your Email" required>
+          <button type="submit">Subscribe</button>
+        </form>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 Quantum Equation Technology. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Chatbot -->
+  <div class="chatbot">
+    <button class="chatbot-button" aria-label="Open Chatbot">💬</button>
+    <div class="chatbot-window">
+      <div class="chatbot-header">QET Assistant</div>
+      <div class="chatbot-body">
+        <div class="chatbot-message">Hello! How can I assist you today?</div>
+      </div>
+      <div class="chatbot-input">
+        <input type="text" placeholder="Type your message...">
+        <button>Send</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- JavaScript -->
   <script>
+    // Copy Referral Link
     function copyReferralLink() {
       const link = "quantumequation.com/ref/[agent-id]";
       navigator.clipboard.writeText(link).then(() => {
         alert("Referral link copied to clipboard!");
       });
     }
+
+    // Chatbot Toggle
+    const chatbotButton = document.querySelector('.chatbot-button');
+    const chatbotWindow = document.querySelector('.chatbot-window');
+    chatbotButton.addEventListener('click', () => {
+      chatbotWindow.style.display = chatbotWindow.style.display === 'block' ? 'none' : 'block';
+    });
+
+    // Basic Chatbot Functionality
+    const chatbotInput = document.querySelector('.chatbot-input input');
+    const chatbotSend = document.querySelector('.chatbot-input button');
+    const chatbotBody = document.querySelector('.chatbot-body');
+    chatbotSend.addEventListener('click', () => {
+      const message = chatbotInput.value.trim();
+      if (message) {
+        const userMessage = document.createElement('div');
+        userMessage.classList.add('chatbot-message');
+        userMessage.textContent = `You: ${message}`;
+        chatbotBody.appendChild(userMessage);
+
+        const botResponse = document.createElement('div');
+        botResponse.classList.add('chatbot-message');
+        botResponse.textContent = `QET Assistant: Thanks for your message! How can I assist you further?`;
+        chatbotBody.appendChild(botResponse);
+
+        chatbotInput.value = '';
+        chatbotBody.scrollTop = chatbotBody.scrollHeight;
+      }
+    });
+    chatbotInput.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') chatbotSend.click();
+    });
   </script>
 </body>
 </html>
