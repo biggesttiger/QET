@@ -881,181 +881,6 @@
             margin-bottom: 0;
         }
 
-       /* Become an Agent Section Styles */
-.become-agent {
-    padding: 80px 40px;
-    background: url('https://i.imgur.com/pCc1Q9T.jpeg') no-repeat center center/cover;
-    position: relative;
-    text-align: center;
-    color: #fff;
-    min-height: 600px;
-}
-
-.become-agent::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.75);
-    z-index: 1;
-}
-
-.become-agent h2,
-.become-agent p,
-.become-agent .agent-benefits,
-.become-agent .referral-info,
-.become-agent .cta {
-    position: relative;
-    z-index: 2;
-}
-
-.become-agent h2 {
-    font-size: clamp(2rem, 5vw, 2.5rem);
-    font-weight: 700;
-    margin-bottom: 20px;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
-}
-
-.become-agent p {
-    font-size: clamp(1rem, 2vw, 1.25rem);
-    font-weight: 300;
-    color: #eee;
-    margin-bottom: 40px;
-    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
-}
-
-.agent-benefits {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 40px;
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-.agent-benefit {
-    background: rgba(255, 255, 255, 0.15);
-    backdrop-filter: blur(12px);
-    padding: 35px;
-    border-radius: 20px;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    text-align: center;
-    transition: transform 0.4s ease, box-shadow 0.4s ease;
-    perspective: 1000px;
-}
-
-.agent-benefit:hover {
-    transform: translateY(-12px) rotateX(8deg) rotateY(8deg);
-    box-shadow: 0 20px 40px rgba(0, 204, 0, 0.4);
-}
-
-.agent-icon {
-    width: 70px;
-    height: 70px;
-    margin-bottom: 25px;
-    animation: float 3s ease-in-out infinite;
-    transition: transform 0.4s ease, filter 0.4s ease;
-}
-
-.agent-benefit:hover .agent-icon {
-    transform: scale(1.2) rotateZ(15deg);
-    filter: drop-shadow(0 5px 15px rgba(0, 204, 0, 0.6));
-    animation-play-state: paused;
-}
-
-@keyframes float {
-    0% { transform: translateY(0px); }
-    50% { transform: translateY(-10px); }
-    100% { transform: translateY(0px); }
-}
-
-.agent-benefit h3 {
-    font-size: 1.75rem;
-    font-weight: 600;
-    margin: 0 0 15px;
-    color: #fff;
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
-}
-
-.agent-benefit p {
-    font-size: 1.1rem;
-    font-weight: 300;
-    color: #ddd;
-}
-
-.referral-info {
-    margin-top: 40px;
-    background: rgba(255, 255, 255, 0.1);
-    padding: 20px;
-    border-radius: 10px;
-    max-width: 800px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.referral-info h3 {
-    font-size: 1.5rem;
-    font-weight: 600;
-    margin-bottom: 15px;
-}
-
-.referral-info p {
-    font-size: 1rem;
-    font-weight: 300;
-    color: #ddd;
-}
-
-.become-agent .cta {
-    background-color: #00cc00;
-    color: #000;
-    padding: 15px 35px;
-    border-radius: 8px;
-    font-size: clamp(1rem, 2vw, 1.25rem);
-    font-weight: 600;
-    margin-top: 50px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    border: none;
-    cursor: pointer;
-}
-
-.become-agent .cta:hover {
-    transform: scale(1.08);
-    box-shadow: 0 0 20px rgba(0, 204, 0, 0.6);
-}
-
-        /* Legal & Disclaimer Section */
-        .legal-section {
-            max-width: 1200px;
-            margin: 80px auto;
-            padding: 50px;
-            background: linear-gradient(145deg, #2a2a2a, #1f1f1f);
-            border-radius: 25px;
-            border: 1px solid rgba(0, 255, 136, 0.2);
-            box-shadow: 0 0 30px rgba(0, 255, 136, 0.1);
-            text-align: center;
-        }
-
-        .legal-section h1 {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 3rem;
-            background: linear-gradient(90deg, #00ff88, #00ccff);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 40px;
-            text-shadow: 0 0 10px rgba(0, 255, 136, 0.5);
-        }
-
-        .legal-section p {
-            font-size: 1rem;
-            color: #b0b0b0;
-            margin-bottom: 20px;
-            text-align: left;
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
         /* How It Works Section */
         .how-it-works {
             padding: 80px 40px;
@@ -1367,6 +1192,355 @@
             cursor: pointer;
             text-shadow: 0 0 8px rgba(0, 255, 136, 0.4);
         }
+         /* Legal/Disclaimer Section */
+    .legal {
+      padding: 80px 40px;
+      position: relative;
+      overflow: hidden;
+      border-top: 1px solid #00cc00;
+      border-bottom: 1px solid #00cc00;
+      text-align: center;
+      min-height: 400px;
+    }
+
+    .legal-container {
+      max-width: 900px;
+      width: 100%;
+      margin: 0 auto;
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(15px);
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0 0 25px rgba(0, 204, 0, 0.15);
+      animation: fadeIn 1s ease-in;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .legal-icon {
+      width: 60px;
+      height: 60px;
+      transition: transform 0.3s ease, filter 0.3s ease;
+    }
+
+    .legal-icon:hover {
+      transform: scale(1.15) rotate(10deg);
+      filter: drop-shadow(0 0 10px rgba(0, 204, 0, 0.7));
+    }
+
+    .legal h2 {
+      font-size: clamp(2rem, 4vw, 2.5rem);
+      font-weight: 700;
+      margin-bottom: 15px;
+      text-shadow: 0 0 10px rgba(0, 204, 0, 0.5);
+      animation: glow 2s ease-in-out infinite alternate;
+    }
+
+    .legal p {
+      font-size: 1.1rem;
+      font-weight: 300;
+      color: #eee;
+      margin-bottom: 20px;
+      line-height: 1.8;
+      opacity: 0;
+      animation: fadeInText 1.5s ease-in forwards;
+      animation-delay: 0.5s;
+    }
+
+    .legal a#open-modal {
+      display: inline-block;
+      background: linear-gradient(135deg, #00cc00, #00ff00);
+      color: #000;
+      padding: 12px 25px;
+      border-radius: 10px;
+      font-weight: 600;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: pointer;
+    }
+
+    .legal a#open-modal:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 20px rgba(0, 204, 0, 0.8);
+    }
+
+    @keyframes glow {
+      from { text-shadow: 0 0 5px rgba(0, 204, 0, 0.3); }
+      to { text-shadow: 0 0 15px rgba(0, 204, 0, 0.7); }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeInText {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    /* Modal Styles */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.9);
+      z-index: 2000;
+      justify-content: center;
+      align-items: center;
+      overflow-y: auto;
+      animation: fadeInModal 0.4s ease-out;
+    }
+
+    .modal-content {
+      background: #1a1a1a;
+      max-width: 900px;
+      width: 90%;
+      border-radius: 15px;
+      box-shadow: 0 0 40px rgba(0, 204, 0, 0.3), 0 0 20px rgba(255, 215, 0, 0.2);
+      border: 1px solid #00cc00;
+      overflow: hidden;
+      animation: slideInModal 0.5s ease-out;
+    }
+
+    .modal-header {
+      background: linear-gradient(135deg, #00cc00, #ffd700);
+      padding: 20px;
+      text-align: center;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .modal-header h3 {
+      font-size: 2rem;
+      font-weight: 700;
+      color: #000;
+      margin: 0;
+      text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+    }
+
+    .modal-body {
+      padding: 30px;
+      max-height: 70vh;
+      overflow-y: auto;
+      scrollbar-width: thin;
+      scrollbar-color: #00cc00 #2a2a2a;
+    }
+
+    .modal-body::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    .modal-body::-webkit-scrollbar-track {
+      background: #2a2a2a;
+      border-radius: 10px;
+    }
+
+    .modal-body::-webkit-scrollbar-thumb {
+      background: #00cc00;
+      border-radius: 10px;
+    }
+
+    .modal-body::-webkit-scrollbar-thumb:hover {
+      background: #00ff00;
+    }
+
+    .modal-body p {
+      font-size: 1rem;
+      font-weight: 300;
+      color: #ddd;
+      margin-bottom: 20px;
+      line-height: 1.8;
+    }
+
+    .modal-body strong {
+      font-weight: 600;
+      color: #fff;
+    }
+
+    .modal-content .close-btn {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      font-size: 1.5rem;
+      color: #000;
+      background: #ffd700;
+      border: none;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      line-height: 40px;
+      text-align: center;
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+    }
+
+    .modal-content .close-btn:hover {
+      transform: scale(1.1) rotate(90deg);
+      box-shadow: 0 0 20px rgba(255, 215, 0, 0.8);
+    }
+
+    @keyframes fadeInModal {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes slideInModal {
+      from { transform: translateY(-50px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    @keyframes slideOutModal {
+      from { transform: translateY(0); opacity: 1; }
+      to { transform: translateY(-50px); opacity: 0; }
+    }
+        /* Become an Agent Section */
+    .become-agent {
+      padding: 80px 40px;
+      background: url('https://i.imgur.com/pCc1Q9T.jpeg') no-repeat center center/cover;
+      position: relative;
+      text-align: center;
+      color: #fff;
+      min-height: 600px;
+    }
+
+    .become-agent::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.75);
+      z-index: 1;
+    }
+
+    .become-agent h2,
+    .become-agent p,
+    .become-agent .agent-benefits,
+    .become-agent .referral-info,
+    .become-agent .cta {
+      position: relative;
+      z-index: 2;
+    }
+
+    .become-agent h2 {
+      font-size: clamp(2rem, 5vw, 2.5rem);
+      font-weight: 700;
+      margin-bottom: 20px;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    }
+
+    .become-agent p {
+      font-size: clamp(1rem, 2vw, 1.25rem);
+      font-weight: 300;
+      color: #eee;
+      margin-bottom: 40px;
+      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+    }
+
+    .agent-benefits {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 40px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .agent-benefit {
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(12px);
+      padding: 35px;
+      border-radius: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      text-align: center;
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+      perspective: 1000px;
+    }
+
+    .agent-benefit:hover {
+      transform: translateY(-12px) rotateX(8deg) rotateY(8deg);
+      box-shadow: 0 20px 40px rgba(0, 204, 0, 0.4);
+    }
+
+    .agent-icon {
+      width: 70px;
+      height: 70px;
+      margin-bottom: 25px;
+      animation: float 3s ease-in-out infinite;
+      transition: transform 0.4s ease, filter 0.4s ease;
+    }
+
+    .agent-benefit:hover .agent-icon {
+      transform: scale(1.2) rotateZ(15deg);
+      filter: drop-shadow(0 5px 15px rgba(0, 204, 0, 0.6));
+      animation-play-state: paused;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+      100% { transform: translateY(0px); }
+    }
+
+    .agent-benefit h3 {
+      font-size: 1.75rem;
+      font-weight: 600;
+      margin: 0 0 15px;
+      color: #fff;
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+    }
+
+    .agent-benefit p {
+      font-size: 1.1rem;
+      font-weight: 300;
+      color: #ddd;
+    }
+
+    .referral-info {
+      margin-top: 40px;
+      background: rgba(255, 255, 255, 0.1);
+      padding: 20px;
+      border-radius: 10px;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .referral-info h3 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 15px;
+    }
+
+    .referral-info p {
+      font-size: 1rem;
+      font-weight: 300;
+      color: #ddd;
+    }
+
+    .become-agent .cta {
+      background-color: #00cc00;
+      color: #000;
+      padding: 15px 35px;
+      border-radius: 8px;
+      font-size: clamp(1rem, 2vw, 1.25rem);
+      font-weight: 600;
+      margin-top: 50px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      border: none;
+      cursor: pointer;
+    }
+
+    .become-agent .cta:hover {
+      transform: scale(1.08);
+      box-shadow: 0 0 20px rgba(0, 204, 0, 0.6);
+    }
+
 /* Contact Section Styles */
 .contact {
     padding: 80px 40px;
@@ -2025,27 +2199,6 @@
         </div>
     </section>
 
-    <!-- Become a QET Agent Section -->
-    <section class="agent-section" id="agent">
-        <h1>Become a QET Agent</h1>
-        <p>Join our agent program to earn commissions and exclusive rewards by promoting QET’s innovative platform.</p>
-        <div class="agent-benefits">
-            <div class="agent-benefit">
-                <h2>Lucrative Commissions</h2>
-                <p>Earn up to 10% commission on every NFT sale you refer.</p>
-            </div>
-                        <div class="agent-benefit">
-                <h2>Exclusive Rewards</h2>
-                <p>Unlock special NFTs and QET token bonuses as an agent.</p>
-            </div>
-            <div class="agent-benefit">
-                <h2>Community Impact</h2>
-                <p>Help grow the QET ecosystem and support decentralized finance.</p>
-            </div>
-        </div>
-        <button class="agent-cta">Join Now</button>
-    </section>
-
     <!-- Quantum Marketplace Section -->
     <section class="marketplace-section" id="quantum-marketplace">
         <div class="market-banner">
@@ -2176,33 +2329,33 @@
         <p>The information provided on this website is for general informational purposes only and should not be considered legal, financial, or investment advice. Users are responsible for conducting their own research before participating in any offerings.</p>
         <p>QET is not liable for any losses incurred from the use of our platform. For full terms, please review our official legal documentation available upon request.</p>
     </section>
-    <!-- Become an Agent Section -->
-<section class="become-agent">
-    <h2>Become an Agent</h2>
-    <p>Join us and become an agent to earn rewards.</p>
+  <!-- Become an Agent Section -->
+  <section class="become-agent" id="become-agent">
+    <h2>Become a QET Agent</h2>
+    <p>Earn QET token commissions by promoting smart contract NFTs.</p>
     <div class="agent-benefits">
-        <div class="agent-benefit">
-            <img src="https://i.imgur.com/pCc1Q9T.jpeg" alt="Benefit 1" class="agent-icon">
-            <h3>Benefit 1</h3>
-            <p>Details about benefit 1.</p>
-        </div>
-        <div class="agent-benefit">
-            <img src="https://i.imgur.com/pCc1Q9T.jpeg" alt="Benefit 2" class="agent-icon">
-            <h3>Benefit 2</h3>
-            <p>Details about benefit 2.</p>
-        </div>
-        <div class="agent-benefit">
-            <img src="https://i.imgur.com/pCc1Q9T.jpeg" alt="Benefit 3" class="agent-icon">
-            <h3>Benefit 3</h3>
-            <p>Details about benefit 3.</p>
-        </div>
+      <div class="agent-benefit">
+        <img src="https://img.icons8.com/3d-fluency/94/coins.png" alt="Lucrative Commissions Icon" class="agent-icon" loading="lazy">
+        <h3>Lucrative Commissions</h3>
+        <p>Earn 10% in QET on every NFT sale through your referrals.</p>
+      </div>
+      <div class="agent-benefit">
+        <img src="https://img.icons8.com/3d-fluency/94/books.png" alt="Exclusive Resources Icon" class="agent-icon" loading="lazy">
+        <h3>Exclusive Resources</h3>
+        <p>Access training to promote QET smart contracts.</p>
+      </div>
+      <div class="agent-benefit">
+        <img src="https://img.icons8.com/3d-fluency/94/globe.png" alt="Global Community Icon" class="agent-icon" loading="lazy">
+        <h3>Global Community</h3>
+        <p>Join agents worldwide to grow the QET ecosystem.</p>
+      </div>
     </div>
     <div class="referral-info">
-        <h3>Referral Program</h3>
-        <p>Details about the referral program.</p>
+      <h3>Referral Bonuses</h3>
+      <p>Invite friends with your unique referral link and earn 10% in QET for every NFT they purchase. Get your link from your dashboard after signing up!</p>
     </div>
     <button class="cta">Join Now</button>
-</section>
+  </section>
 <section class="contact" id="contact">
     <div class="container">
         <h2>Contact Us</h2>
