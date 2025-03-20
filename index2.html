@@ -881,99 +881,148 @@
             margin-bottom: 0;
         }
 
-        /* Become a QET Agent Section */
-        .agent-section {
-            max-width: 1200px;
-            margin: 80px auto;
-            padding: 50px;
-            background: linear-gradient(145deg, #2a2a2a, #1f1f1f);
-            border-radius: 25px;
-            border: 1px solid rgba(0, 255, 136, 0.2);
-            box-shadow: 0 0 30px rgba(0, 255, 136, 0.1);
-            text-align: center;
-        }
+       /* Become an Agent Section Styles */
+.become-agent {
+    padding: 80px 40px;
+    background: url('https://i.imgur.com/pCc1Q9T.jpeg') no-repeat center center/cover;
+    position: relative;
+    text-align: center;
+    color: #fff;
+    min-height: 600px;
+}
 
-        .agent-section h1 {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 3rem;
-            background: linear-gradient(90deg, #00ff88, #00ccff);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 40px;
-            text-shadow: 0 0 10px rgba(0, 255, 136, 0.5);
-        }
+.become-agent::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.75);
+    z-index: 1;
+}
 
-        .agent-section p {
-            font-size: 1.2rem;
-            color: #b0b0b0;
-            margin-bottom: 30px;
-            text-align: center;
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
-        }
+.become-agent h2,
+.become-agent p,
+.become-agent .agent-benefits,
+.become-agent .referral-info,
+.become-agent .cta {
+    position: relative;
+    z-index: 2;
+}
 
-        .agent-benefits {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 30px;
-            margin-bottom: 40px;
-        }
+.become-agent h2 {
+    font-size: clamp(2rem, 5vw, 2.5rem);
+    font-weight: 700;
+    margin-bottom: 20px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
 
-        @media (max-width: 768px) {
-            .agent-benefits {
-                grid-template-columns: 1fr;
-            }
-        }
+.become-agent p {
+    font-size: clamp(1rem, 2vw, 1.25rem);
+    font-weight: 300;
+    color: #eee;
+    margin-bottom: 40px;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
 
-        .agent-benefit {
-            background: linear-gradient(145deg, rgba(30, 30, 30, 0.9), rgba(20, 20, 20, 0.9));
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            border: 1px solid rgba(0, 255, 136, 0.1);
-            padding: 20px;
-            transition: transform 0.4s ease, box-shadow 0.4s ease;
-            animation: fadeIn 0.8s ease-out forwards;
-        }
+.agent-benefits {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
 
-        .agent-benefit:hover {
-            transform: translateY(-8px) scale(1.02);
-            box-shadow: 0 0 25px rgba(0, 255, 136, 0.6);
-            border-color: rgba(0, 255, 136, 0.5);
-        }
+.agent-benefit {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(12px);
+    padding: 35px;
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    text-align: center;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    perspective: 1000px;
+}
 
-        .agent-benefit h2 {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 1.6rem;
-            background: linear-gradient(90deg, #00ff88, #00ccff);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 15px;
-            text-shadow: 0 0 8px rgba(0, 255, 136, 0.4);
-        }
+.agent-benefit:hover {
+    transform: translateY(-12px) rotateX(8deg) rotateY(8deg);
+    box-shadow: 0 20px 40px rgba(0, 204, 0, 0.4);
+}
 
-        .agent-benefit p {
-            font-size: 1rem;
-            color: #b0b0b0;
-            margin-bottom: 0;
-        }
+.agent-icon {
+    width: 70px;
+    height: 70px;
+    margin-bottom: 25px;
+    animation: float 3s ease-in-out infinite;
+    transition: transform 0.4s ease, filter 0.4s ease;
+}
 
-        .agent-cta {
-            background: linear-gradient(90deg, #00ff88, #00ccff);
-            color: #000;
-            padding: 15px 30px;
-            border-radius: 5px;
-            font-size: 1.125rem;
-            font-weight: 600;
-            border: none;
-            cursor: pointer;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
+.agent-benefit:hover .agent-icon {
+    transform: scale(1.2) rotateZ(15deg);
+    filter: drop-shadow(0 5px 15px rgba(0, 204, 0, 0.6));
+    animation-play-state: paused;
+}
 
-        .agent-cta:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 15px rgba(0, 255, 136, 0.5);
-        }
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0px); }
+}
+
+.agent-benefit h3 {
+    font-size: 1.75rem;
+    font-weight: 600;
+    margin: 0 0 15px;
+    color: #fff;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+}
+
+.agent-benefit p {
+    font-size: 1.1rem;
+    font-weight: 300;
+    color: #ddd;
+}
+
+.referral-info {
+    margin-top: 40px;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.referral-info h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+.referral-info p {
+    font-size: 1rem;
+    font-weight: 300;
+    color: #ddd;
+}
+
+.become-agent .cta {
+    background-color: #00cc00;
+    color: #000;
+    padding: 15px 35px;
+    border-radius: 8px;
+    font-size: clamp(1rem, 2vw, 1.25rem);
+    font-weight: 600;
+    margin-top: 50px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: none;
+    cursor: pointer;
+}
+
+.become-agent .cta:hover {
+    transform: scale(1.08);
+    box-shadow: 0 0 20px rgba(0, 204, 0, 0.6);
+}
 
         /* Legal & Disclaimer Section */
         .legal-section {
@@ -1318,7 +1367,74 @@
             cursor: pointer;
             text-shadow: 0 0 8px rgba(0, 255, 136, 0.4);
         }
+/* Contact Section Styles */
+.contact {
+    padding: 80px 40px;
+    background: linear-gradient(145deg, #2a2a2a, #1f1f1f); /* Matching background style */
+    border-radius: 25px;
+    border: 1px solid rgba(0, 255, 136, 0.2);
+    box-shadow: 0 0 30px rgba(0, 255, 136, 0.1);
+    color: #fff;
+    text-align: center;
+    max-width: 1200px;
+    width: 100%;
+    margin: 80px auto;
+}
 
+.contact h2 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 3rem;
+    background: linear-gradient(90deg, #00ff88, #00ccff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 40px;
+    text-shadow: 0 0 10px rgba(0, 255, 136, 0.5);
+}
+
+.contact .container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.contact .form-group {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.contact label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: 600;
+    color: #b0b0b0;
+}
+
+.contact input,
+.contact textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #333;
+    border-radius: 5px;
+    background-color: #1a1a1a;
+    color: #fff;
+    font-size: 1rem;
+}
+
+.contact button {
+    background: linear-gradient(90deg, #00ff88, #00ccff);
+    color: #000;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.125rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.contact button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 15px rgba(0, 255, 136, 0.5);
+}
         .faq-item p {
             font-size: 1rem;
             color: #b0b0b0;
@@ -2060,7 +2176,53 @@
         <p>The information provided on this website is for general informational purposes only and should not be considered legal, financial, or investment advice. Users are responsible for conducting their own research before participating in any offerings.</p>
         <p>QET is not liable for any losses incurred from the use of our platform. For full terms, please review our official legal documentation available upon request.</p>
     </section>
-
+    <!-- Become an Agent Section -->
+<section class="become-agent">
+    <h2>Become an Agent</h2>
+    <p>Join us and become an agent to earn rewards.</p>
+    <div class="agent-benefits">
+        <div class="agent-benefit">
+            <img src="https://i.imgur.com/pCc1Q9T.jpeg" alt="Benefit 1" class="agent-icon">
+            <h3>Benefit 1</h3>
+            <p>Details about benefit 1.</p>
+        </div>
+        <div class="agent-benefit">
+            <img src="https://i.imgur.com/pCc1Q9T.jpeg" alt="Benefit 2" class="agent-icon">
+            <h3>Benefit 2</h3>
+            <p>Details about benefit 2.</p>
+        </div>
+        <div class="agent-benefit">
+            <img src="https://i.imgur.com/pCc1Q9T.jpeg" alt="Benefit 3" class="agent-icon">
+            <h3>Benefit 3</h3>
+            <p>Details about benefit 3.</p>
+        </div>
+    </div>
+    <div class="referral-info">
+        <h3>Referral Program</h3>
+        <p>Details about the referral program.</p>
+    </div>
+    <button class="cta">Join Now</button>
+</section>
+<section class="contact" id="contact">
+    <div class="container">
+        <h2>Contact Us</h2>
+        <form action="submit_form.php" method="post">
+            <div class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="message">Message:</label>
+                <textarea id="message" name="message" rows="5" required></textarea>
+            </div>
+            <button type="submit">Send Message</button>
+        </form>
+    </div>
+</section>
     <!-- Footer -->
     <footer>
         <div class="footer-content">
