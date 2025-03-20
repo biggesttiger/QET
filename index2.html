@@ -1003,8 +1003,38 @@
     margin-bottom: 20px;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     animation: fadeIn 0.8s ease-out forwards;
+    flex: 1 1 200px;  /* Allow cards to resize within the flex container */
+    box-sizing: border-box;  /* Ensure padding and border are included in the size */
 }
 
+.step img {
+    width: 50px;
+    height: 50px;
+    margin-bottom: 20px;
+    transition: transform 0.3s ease;
+}
+
+.step:hover img {
+    transform: scale(1.05);
+}
+
+.step h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+    background: linear-gradient(90deg, #00ff88, #00ccff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 8px rgba(0, 255, 136, 0.4);
+}
+
+.step p {
+    font-size: 1rem;
+    font-weight: 300;
+    color: #b0b0b0;
+    margin-bottom: 20px;
+    text-align: center;
+}
         /* Whitepaper Section */
         .whitepaper {
             padding: 80px 40px;
