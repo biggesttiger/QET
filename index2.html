@@ -442,7 +442,7 @@ nav {
 
 /* Dashboard Section */
 .dashboard-preview {
-    padding: 80px 40px;
+    padding: 60px 20px; /* Reduced padding for better spacing */
     background: linear-gradient(135deg, #1a1a1a, #2a2a2a);
     position: relative;
     overflow: hidden;
@@ -470,7 +470,7 @@ nav {
     font-family: 'Orbitron', sans-serif;
     font-size: clamp(1.75rem, 4vw, 2.25rem);
     font-weight: 600;
-    margin-bottom: 50px;
+    margin-bottom: 40px; /* Reduced margin for better spacing */
     background: linear-gradient(90deg, #00ff88, #00ccff);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -481,8 +481,8 @@ nav {
     max-width: 1200px;
     margin: 0 auto;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 30px;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); /* Adjusted card size */
+    gap: 20px; /* Reduced gap for better spacing */
     position: relative;
     z-index: 1;
 }
@@ -490,11 +490,11 @@ nav {
 .dashboard-card {
     background: rgba(42, 42, 42, 0.9);
     border-radius: 15px;
-    padding: 30px;
+    padding: 20px; /* Reduced padding for better spacing */
     position: relative;
     overflow: hidden;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    border: 1px solid rgba(0, 255, 136, 0.2);
+    border: 1px solid rgba(0, 255, 136, 0.15);
     backdrop-filter: blur(5px);
 }
 
@@ -523,18 +523,24 @@ nav {
     display: flex;
     align-items: center;
     gap: 15px;
-    margin-bottom: 20px;
+    margin-bottom: 15px; /* Reduced margin for better spacing */
 }
 
 .metric-icon {
-    width: 50px;
-    height: 50px;
-    background: rgba(0, 204, 0, 0.2);
-    border-radius: 12px;
+    width: 40px; /* Reduced icon size */
+    height: 40px; /* Reduced icon size */
+    background: rgba(0, 255, 136, 0.1); /* Subtle background for icons */
+    border-radius: 10px; /* Slightly rounded corners */
     display: flex;
     align-items: center;
     justify-content: center;
     transition: transform 0.3s ease;
+}
+
+.metric-icon svg {
+    width: 20px; /* Adjusted icon size */
+    height: 20px; /* Adjusted icon size */
+    fill: #00ff88; /* Icon color matching the theme */
 }
 
 .dashboard-card:hover .metric-icon {
@@ -542,43 +548,47 @@ nav {
 }
 
 .metric-content h3 {
-    font-family: 'Inter', sans-serif;
-    font-size: 1.1rem;
-    color: #b0b0b0;
+    font-family: 'Inter', sans-serif; /* Consistent with site body text */
+    font-size: 1.1rem; /* Adjusted font size */
+    color: #fff; /* White text for headings */
     margin-bottom: 5px;
 }
 
 .metric-content .value {
-    font-family: 'Inter', sans-serif;
-    font-size: 2rem;
+    font-family: 'Orbitron', sans-serif; /* Consistent with site headings */
+    font-size: 1.75rem; /* Adjusted font size */
     font-weight: 700;
-    color: #00cc00;
     background: linear-gradient(90deg, #00ff88, #00ccff);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 8px rgba(0, 255, 136, 0.4);
 }
 
 .metric-trend {
     display: flex;
     align-items: center;
     gap: 8px;
-    color: #00cc00;
-    font-family: 'Inter', sans-serif;
+    font-family: 'Inter', sans-serif; /* Consistent with site body text */
+    color: #b0b0b0; /* Secondary text color */
     font-size: 0.9rem;
-    margin-top: 15px;
+    margin-top: 10px; /* Reduced margin for better spacing */
+}
+
+.metric-trend span {
+    color: #00ff88; /* Highlight color consistent with site */
 }
 
 .join-now-overlay {
     position: relative;
     text-align: center;
-    margin-top: 50px;
+    margin-top: 40px; /* Reduced margin for better spacing */
 }
 
 .join-now-btn {
     display: inline-block;
-    padding: 15px 30px;
+    padding: 12px 25px; /* Adjusted padding */
     font-family: 'Inter', sans-serif;
-    font-size: 1.2rem;
+    font-size: 1rem; /* Adjusted font size */
     font-weight: 600;
     background: linear-gradient(90deg, #00ff88, #00ccff);
     color: #000;
@@ -592,12 +602,11 @@ nav {
     transform: scale(1.05);
     box-shadow: 0 0 15px rgba(0, 255, 136, 0.5);
 }
-
 /* Real World Investments Section */
 .investments-section {
     max-width: 1200px;
-    margin: 80px auto;
-    padding: 50px;
+    margin: 60px auto;
+    padding: 30px;
     background: linear-gradient(145deg, #2a2a2a, #1f1f1f);
     border-radius: 25px;
     border: 1px solid rgba(0, 255, 136, 0.2);
@@ -621,7 +630,7 @@ nav {
     color: #b0b0b0;
     margin-bottom: 50px;
     text-align: center;
-    max-width: 800px;
+    max-width: 600px;
     margin-left: auto;
     margin-right: auto;
 }
@@ -891,7 +900,7 @@ nav {
 
 .product-content h2 {
     font-family: 'Orbitron', sans-serif;
-    font-size: 1.6rem;
+    font-size: 1.4rem;
     background: linear-gradient(90deg, #00ff88, #00ccff);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -1046,6 +1055,7 @@ nav {
 }
 
 /* Whitepaper Section */
+/* Whitepaper Section */
 .whitepaper {
     padding: 80px 40px;
     text-align: center;
@@ -1104,7 +1114,6 @@ nav {
     50% { transform: translateY(-10px); }
     100% { transform: translateY(0px); }
 }
-
 /* Testimonial Section */
 .testimonial-section {
     text-align: center;
@@ -1357,7 +1366,16 @@ nav {
     transform: scale(1.05);
     box-shadow: 0 0 15px rgba(0, 255, 136, 0.5);
 }
+.modal-content {
+    background: linear-gradient(145deg, #2a2a2a, #1f1f1f);
+    border-radius: 20px;
+    padding: 30px;
+    color: #fff; /* Ensure text color matches the website */
+}
 
+.close-btn {
+    background: linear-gradient(90deg, #00ff88, #00ccff); /* Match the website color */
+}
 /* Become an Agent Section */
 .become-agent {
     padding: 80px 40px;
@@ -1923,23 +1941,29 @@ footer {
         </nav>
     </header>
 
-    <!-- Hero Section -->
-    <section class="hero" id="home">
-        <div class="hero-slide active" style="background-image: url('https://images.unsplash.com/photo-1624994895603-5791c2b2e7a4?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');">
-            <div class="hero-content">
-                <h1>Quantum Equation Technology</h1>
-                <p>Own smart contracts via NFTs with a 3% monthly yield paid 70% USDT, 30% QET.</p>
-                <button class="cta">Mint Your NFT Now</button>
-            </div>
+   <section class="hero" id="home">
+    <div class="hero-slide active" style="background-image: url('https://i.imgur.com/wpBJoRi.jpg');">
+        <div class="hero-content">
+            <h1>Quantum Equation Technology</h1>
+            <p>Own smart contracts via NFTs with a 3% monthly yield paid 70% USDT, 30% QET.</p>
+            <button class="cta">Mint Your NFT Now</button>
         </div>
-        <div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1641938116945-0e0f12f8f7f9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');">
-            <div class="hero-content">
-                <h1>Smart Contracts on Blockchain</h1>
-                <p>Securely invest in smart contracts with QET token integration.</p>
-                <button class="cta">Explore Marketplace</button>
-            </div>
+    </div>
+    <div class="hero-slide" style="background-image: url('https://i.imgur.com/LQrb2ZS.jpg');">
+        <div class="hero-content">
+            <h1>Smart Contracts on Blockchain</h1>
+            <p>Securely invest in smart contracts with QET token integration.</p>
+            <button class="cta">Explore Marketplace</button>
         </div>
-    </section>
+    </div>
+    <div class="hero-slide" style="background-image: url('https://i.imgur.com/7FiDYam.jpg');">
+        <div class="hero-content">
+            <h1>The Most Valueable Nfts in the World</h1>
+            <p>Experience decentralized finance with real-world asset backing, and earn 36% annually on your nft value.</p>
+            <button class="cta">Get Started</button>
+        </div>
+    </div>
+</section>
 
     <!-- About Us Section -->
     <section class="about-section" id="about">
@@ -2031,13 +2055,90 @@ footer {
         </div>
     </section>
 
-    <!-- Whitepaper Section -->
-    <section class="whitepaper" id="whitepaper">
-        <h2>Technical Details & Whitepaper</h2>
-        <img src="https://img.icons8.com/3d-fluency/94/document.png" alt="Whitepaper Icon" class="whitepaper-icon" loading="lazy">
-        <p>Learn about our smart contract architecture, QET tokenomics, and how we ensure a sustainable 3% monthly yield backed by real-world assets.</p>
-        <button class="cta">Download Whitepaper</button>
-    </section>
+<!-- Whitepaper Section -->
+<section class="whitepaper" id="whitepaper">
+    <h2>Technical Details & Whitepaper</h2>
+    <img src="https://img.icons8.com/3d-fluency/94/document.png" alt="Whitepaper Icon" class="whitepaper-icon" loading="lazy">
+    <p>Learn about our smart contract architecture, QET tokenomics, and how we ensure a sustainable 3% monthly yield backed by real-world assets.</p>
+    <button class="cta" onclick="openWhitepaperModal()">Download Whitepaper</button>
+</section>
+
+<!-- Whitepaper Modal -->
+<div class="modal-overlay" id="whitepaperModal">
+    <div class="modal-content">
+        <div class="close-btn" onclick="closeWhitepaperModal()">×</div>
+        <h2>Quantum Equation Technology (QET) Whitepaper</h2>
+        <div class="whitepaper-content">
+            <h3>Abstract</h3>
+            <p>Quantum Equation Technology (QET) introduces a revolutionary investment model that merges blockchain-powered NFTs with sustainable real-world investments. Investors can purchase smart contract-backed NFTs that yield a 3% monthly return on investment (ROI), paid in 70% USDT and 30% QET tokens. These NFTs are fully transferable and tradable on open marketplaces such as OpenSea and Blur, allowing holders to liquidate their investments seamlessly. The project is supported by a liquidity pool backed by locked funds and real-world investments, ensuring long-term stability and sustainable returns.</p>
+
+            <h3>Introduction</h3>
+            <p>The advent of decentralized finance (DeFi) and non-fungible tokens (NFTs) has opened up new opportunities for investors. QET leverages these technologies to offer a secure, automated, and transparent investment model. This whitepaper outlines the structure, tokenomics, governance, and security measures underpinning QET, as well as the mechanisms ensuring sustainable returns for NFT holders.</p>
+
+            <h3>Features and Benefits</h3>
+            <ul>
+                <li><strong>Smart Contract-Backed NFTs:</strong> Each NFT represents a stake in the QET ecosystem and entitles its holder to monthly ROI.</li>
+                <li><strong>Sustainable ROI:</strong> Investors receive 3% monthly returns, distributed in 70% USDT and 30% QET.</li>
+                <li><strong>Tradability:</strong> NFTs can be resold on open markets, allowing liquidity without traditional lock-in periods.</li>
+                <li><strong>Liquidity Pool Backed by Real-World Investments:</strong> Ensures sustainable payouts and financial stability.</li>
+                <li><strong>Deflationary Token Model:</strong> QET incorporates an auto-burn mechanism to reduce supply over time.</li>
+                <li><strong>Community Governance:</strong> NFT holders can vote on key decisions, including minting, burning, and liquidity management.</li>
+                <li><strong>Anti-Bot & Anti-Snipe Measures:</strong> Protects against automated trading exploits.</li>
+            </ul>
+
+            <h3>Tokenomics</h3>
+            <h4>QET Token</h4>
+            <p><strong>Total Supply:</strong> 100 million QET</p>
+            <p><strong>Token Allocation:</strong></p>
+            <ul>
+                <li>40% Liquidity Pool</li>
+                <li>10% Rewards & Staking</li>
+                <li>25% Development & Operations</li>
+                <li>10% Community Incentives</li>
+                <li>15% Marketing & Partnerships</li>
+            </ul>
+
+            <h3>Revenue Model</h3>
+            <p><strong>Investment Tiers:</strong></p>
+            <ul>
+                <li>Minimum: $50</li>
+                <li>Maximum: $5,000,000</li>
+            </ul>
+            <p><strong>Transaction Fee:</strong> A small percentage of every transaction is burned, reducing total supply over time.</p>
+            <p><strong>Buyback Mechanism:</strong> A portion of earnings is used to buy back and burn QET tokens.</p>
+
+            <h3>Liquidity & Real-World Backing</h3>
+            <p>To ensure sustainable growth and payouts, QET is backed by a diversified investment portfolio, including:</p>
+            <ul>
+                <li><strong>Blockchain-Based Investments:</strong> Liquidity pools, yield farming, and staking protocols.</li>
+                <li><strong>Real Estate Holdings:</strong> Revenue-generating properties that contribute to the QET ecosystem.</li>
+                <li><strong>Green Energy Projects:</strong> Investments in renewable energy sources such as solar and wind farms.</li>
+                <li><strong>Tech Startups:</strong> Early-stage investments in high-growth technology firms.</li>
+                <li><strong>Precious Metals & Commodities:</strong> Holdings in gold, silver, and other valuable commodities.</li>
+            </ul>
+
+            <h3>Governance</h3>
+            <p><strong>Community Voting:</strong> Holders vote on proposals using a decentralized governance model.</p>
+            <p><strong>Treasury Management:</strong> A multi-signature wallet ensures secure fund allocation.</p>
+
+            <h3>Security & Compliance</h3>
+            <p><strong>Smart Contract Audits:</strong> Regular third-party audits ensure security and transparency.</p>
+            <p><strong>Regulatory Compliance:</strong> QET adheres to financial regulations to maintain investor trust.</p>
+
+            <h3>Roadmap</h3>
+            <ul>
+                <li><strong>Phase 1:</strong> Smart contract development, liquidity setup, and initial NFT minting.</li>
+                <li><strong>Phase 2:</strong> QET token launch, marketplace integration, and security audits.</li>
+                <li><strong>Phase 3:</strong> Expansion into real-world investments and DAO governance activation.</li>
+                <li><strong>Phase 4:</strong> Full-scale ecosystem growth, partnerships, and global adoption.</li>
+            </ul>
+
+            <h3>Conclusion</h3>
+            <p>Quantum Equation Technology (QET) bridges the gap between DeFi and real-world investments, offering a secure, transparent, and sustainable investment model. With smart contract-backed NFTs, community-driven governance, and a deflationary token model, QET is poised to revolutionize the digital investment landscape.</p>
+        </div>
+        <button class="modal-btn" onclick="alert('Whitepaper download initiated!')">Download PDF</button>
+    </div>
+</div>
 
     <!-- Enhanced Dashboard Section -->
     <section class="dashboard-preview" id="dashboard">
